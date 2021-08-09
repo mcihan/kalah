@@ -1,4 +1,4 @@
-package com.cihan.kalah.dto;
+package com.cihan.kalah.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

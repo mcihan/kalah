@@ -1,9 +1,8 @@
 package com.cihan.kalah.controller;
 
 
-import com.cihan.kalah.dto.MoveGameResponse;
-import com.cihan.kalah.dto.StartGameResponse;
-import com.cihan.kalah.mapper.GameMapper;
+import com.cihan.kalah.model.dto.MoveGameResponse;
+import com.cihan.kalah.model.dto.StartGameResponse;
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.service.KalahService;
 import com.cihan.kalah.util.GameValidationUtil;

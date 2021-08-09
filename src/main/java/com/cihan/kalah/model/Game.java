@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import java.net.InetAddress;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,12 +36,4 @@ public class Game {
         PlayerId playerId = activePlayer == PlayerId.A ? PlayerId.B : PlayerId.A;
         setActivePlayer(playerId);
     }
-
-    public Map<Integer, Pit> getDistributablePits() {
-        return board.getPits().entrySet()
-                .stream()
-                .filter(i -> !i.getValue().isOppositeHouse(activePlayer))
-                .collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue()));
-    }
-
 }

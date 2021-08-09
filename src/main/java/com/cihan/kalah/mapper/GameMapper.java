@@ -1,0 +1,13 @@
+package com.cihan.kalah.mapper;
+
+import com.cihan.kalah.dto.StartGameResponse;
+import com.cihan.kalah.model.Game;
+//import org.mapstruct.Mapper;
+//import org.mapstruct.Mapping;
+
+//@Mapper(componentModel = "spring")
+public interface GameMapper {
+
+ //   @Mapping(source = "url", target = "uri")
+    StartGameResponse toStartGameResponse(Game game);
+}

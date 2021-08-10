@@ -15,7 +15,7 @@ public class GameEngine {
             game.initActivePlayerByPitId(pitId);
         }
         distributeStones(pitId, game);
-        if (isGameOver(game)) {
+        if (game.isOver()) {
             completeGame(game);
         }
     }
@@ -55,12 +55,6 @@ public class GameEngine {
             game.turnToOtherPlayer();
         }
         printPits(pits, "-after");
-    }
-
-    private boolean isGameOver(Game game) {
-        int sumA = game.getBoard().getPlayerPitStoneSum(PlayerId.A);
-        int sumB = game.getBoard().getPlayerPitStoneSum(PlayerId.B);
-        return sumA * sumB == 0;
     }
 
     private void completeGame(Game game) {

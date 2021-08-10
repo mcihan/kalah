@@ -17,18 +17,20 @@ public class Game {
 
     public Game() {
         this.id = "1234"; //UUID.randomUUID().toString();
-        this.players = Stream.of(new Player("Player A", PlayerId.A), new Player("Player B", PlayerId.B))
-                .collect(Collectors.toList());
+        this.players = Stream.of(new Player("Player A", PlayerId.A), new Player("Player B", PlayerId.B)).collect(Collectors.toList());
         this.gameStatus = GameStatus.START;
         this.board = new Board();
     }
 
     public void turnToOtherPlayer() {
-        PlayerId playerId = this.activePlayer == PlayerId.A ? PlayerId.B : PlayerId.A;
-        setActivePlayer(playerId);
+        activePlayer = activePlayer ==  PlayerId.A ? PlayerId.B : PlayerId.A;
     }
 
     public void initActivePlayerByPitId(Integer pitId) {
         setActivePlayer(this.board.getCurrentPit(pitId).getPlayerId());
+    }
+
+    public boolean isOver() {
+        return board.isCompleted();
     }
 }

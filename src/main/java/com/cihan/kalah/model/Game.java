@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 @Data
 public class Game {
     private String id;
-    private List<Player> players;
+    private List<Player> players; //TODO Player A, PlayerB
     private PlayerId winner;
     private PlayerId activePlayer;
     private GameStatus gameStatus;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class KalahService {
+public class GameService {
 
     private final KalahRepository kalahRepository;
     private final GameEngine gameEngine;

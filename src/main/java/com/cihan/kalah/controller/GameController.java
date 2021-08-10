@@ -4,7 +4,7 @@ package com.cihan.kalah.controller;
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.model.dto.MoveGameResponse;
 import com.cihan.kalah.model.dto.StartGameResponse;
-import com.cihan.kalah.service.KalahService;
+import com.cihan.kalah.service.GameService;
 import com.cihan.kalah.util.GameValidationUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.InetAddress;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -22,23 +21,29 @@ import java.util.stream.Collectors;
 @RequestMapping("/games")
 @RequiredArgsConstructor
 @Validated
-@Tag(name = "vehicle", description = "Vehicle controller API")
-public class KalahController {
+@Tag(name = "game", description = "Game Controller API")
+public class GameController {
 
     @Value("${server.port}")
     int port;
 
-    private final KalahService kalahService;
-//    private final GameMapper gameMapper;
+    private final GameService gameService;
 
-    @PostMapping()
+    // TODO
+    // Controller   - Service   - Repository
+    // Dto          - Model     - Entity
+    // GameRequest  - Game      - GameEntity
+    // Immutable
+    //
+
+     // TODO NOTE Leaky Abstraction
+
+    @PostMapping
     public ResponseEntity<StartGameResponse> create() {
-        Game game = kalahService.create();
+        Game game = gameService.create();
 
-        StartGameResponse response = StartGameResponse.builder()
-                .id(game.getId())
-                .uri(generateGameUrl(game.getId()))
-                .build();
+        // TODO mapper ekle, gameEntity alan constructer yap
+        StartGameResponse response = new StartGameResponse(game, port);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -49,29 +54,22 @@ public class KalahController {
                                                  @PathVariable final Integer pitId) {
         GameValidationUtil.validateParameters(gameId, pitId);
 
-        Game game = game = kalahService.move(gameId, pitId);
+        Game game = game = gameService.move(gameId, pitId);
 
         System.out.println("game.getActivePlayer() = " + game.getActivePlayer());
         System.out.println("game.getWinner() = " + game.getWinner());
         System.out.println("game.getGameStatus() = " + game.getGameStatus());
         System.err.println("-----------------------------------------------");
 
-        Map<Integer, Integer> status = game.getBoard().getPits().entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getStoneCount()));
+
 
         // Belki mapper ???
-        MoveGameResponse response = MoveGameResponse.builder()
-                .id(game.getId())
-                .url(generateGameUrl(game.getId()))
-                .status(status)
-                .build();
+        MoveGameResponse response = new MoveGameResponse(game, port);
+
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 
-    private String generateGameUrl(String gameId) {
-        return String.format("http://%s:%s/games/%s", InetAddress.getLoopbackAddress().getHostName(), port, gameId);
-    }
 
 
 

@@ -1,7 +1,7 @@
 package com.cihan.kalah.controller;
 
 import com.cihan.kalah.model.Game;
-import com.cihan.kalah.service.KalahService;
+import com.cihan.kalah.service.GameService;
 import com.cihan.kalah.util.GameValidationUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.*;
 public class UIKahalController {
 
 
-    private final KalahService kalahService;
+    private final GameService gameService;
 
     @PostMapping
     public ResponseEntity<Game> createForUI() {
-        Game game = kalahService.create();
+        Game game = gameService.create();
         return ResponseEntity.status(HttpStatus.CREATED).body(game);
     }
 
@@ -29,7 +29,7 @@ public class UIKahalController {
                                     @PathVariable final Integer pitId) {
         GameValidationUtil.validateParameters(gameId, pitId);
 
-        Game game = kalahService.move(gameId, pitId);
+        Game game = gameService.move(gameId, pitId);
 
         System.out.println("game.getActivePlayer() = " + game.getActivePlayer());
         System.out.println("game.getWinner() = " + game.getWinner());

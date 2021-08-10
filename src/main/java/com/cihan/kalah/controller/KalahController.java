@@ -1,9 +1,9 @@
 package com.cihan.kalah.controller;
 
 
+import com.cihan.kalah.model.Game;
 import com.cihan.kalah.model.dto.MoveGameResponse;
 import com.cihan.kalah.model.dto.StartGameResponse;
-import com.cihan.kalah.model.Game;
 import com.cihan.kalah.service.KalahService;
 import com.cihan.kalah.util.GameValidationUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,7 @@ public class KalahController {
 
         StartGameResponse response = StartGameResponse.builder()
                 .id(game.getId())
-                .uri(game.getUrl())
+                .uri(generateGameUrl(game.getId()))
                 .build();
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -45,7 +46,7 @@ public class KalahController {
 
     @PutMapping("/{gameId}/pits/{pitId}")
     public ResponseEntity<MoveGameResponse> move(@PathVariable final String gameId,
-                               @PathVariable final Integer pitId) {
+                                                 @PathVariable final Integer pitId) {
         GameValidationUtil.validateParameters(gameId, pitId);
 
         Game game = game = kalahService.move(gameId, pitId);
@@ -61,45 +62,19 @@ public class KalahController {
         // Belki mapper ???
         MoveGameResponse response = MoveGameResponse.builder()
                 .id(game.getId())
-                .url(game.getUrl())
+                .url(generateGameUrl(game.getId()))
                 .status(status)
                 .build();
-          return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 
-
-    public ResponseEntity<Game> createForUI() {
-        Game game = kalahService.create();
-        // return ResponseEntity.status(HttpStatus.CREATED).body(gameMapper.toStartGameResponse(game));
-        return ResponseEntity.status(HttpStatus.CREATED).body(game);
+    private String generateGameUrl(String gameId) {
+        return String.format("http://%s:%s/games/%s", InetAddress.getLoopbackAddress().getHostName(), port, gameId);
     }
 
 
-    public ResponseEntity moveForUI(@PathVariable final String gameId,
-                                    @PathVariable final Integer pitId) {
-        GameValidationUtil.validateParameters(gameId, pitId);
 
-        Game game = game = kalahService.move(gameId, pitId);
-
-        System.out.println("game.getActivePlayer() = " + game.getActivePlayer());
-        System.out.println("game.getWinner() = " + game.getWinner());
-        System.out.println("game.getGameStatus() = " + game.getGameStatus());
-        System.err.println("-----------------------------------------------");
-
-        Map<Integer, Integer> status = game.getBoard().getPits().entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getStoneCount()));
-
-        // Belki mapper ???
-        MoveGameResponse response = MoveGameResponse.builder()
-                .id(game.getId())
-                .url(game.getUrl())
-                .status(status)
-                .build();
-        //  return ResponseEntity.status(HttpStatus.OK).body(response);
-        return ResponseEntity.status(HttpStatus.CREATED).body(game);
-
-    }
 
 
 }

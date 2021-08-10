@@ -1,4 +1,4 @@
-package com.cihan.kalah.mapper;
+package com.cihan.kalah.util.mapper;
 
 import com.cihan.kalah.model.dto.StartGameResponse;
 import com.cihan.kalah.model.Game;

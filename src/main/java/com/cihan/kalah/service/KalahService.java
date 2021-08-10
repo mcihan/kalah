@@ -4,21 +4,17 @@ import com.cihan.kalah.model.Game;
 import com.cihan.kalah.repository.KalahRepository;
 import com.cihan.kalah.util.GameValidationUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class KalahService {
 
-    @Value("${server.port}")
-    int port;
-
     private final KalahRepository kalahRepository;
     private final GameEngine gameEngine;
 
     public Game create() {
-        return kalahRepository.save(new Game(port));
+        return kalahRepository.save(new Game());
     }
 
     public Game move(String gameId, Integer pitId) {

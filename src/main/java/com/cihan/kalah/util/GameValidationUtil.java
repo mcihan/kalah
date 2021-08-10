@@ -21,14 +21,6 @@ public class GameValidationUtil {
         }
     }
 
-    public static int getHousePitId(PlayerId playerId) {
-        return PlayerId.A == playerId ? GameConstant.PIT_MEDIAN_ID : GameConstant.PIT_END_ID;
-    }
-
-    public static PlayerId getOppositePlayerId(PlayerId playerId) {
-        return playerId == PlayerId.A ? PlayerId.B : PlayerId.A;
-    }
-
 
     public static void moveValidation(Game game, Integer pitId) {
         attemptPlayFinishGame(game);

@@ -11,13 +11,17 @@ import java.util.stream.IntStream;
 public class Board {
     private ConcurrentMap<Integer, Pit> pits;
 
-    public Board() {
+    Board() {
         this.pits = initPits();
+    }
+
+    public boolean isCompleted() {
+        return getPlayerPitStoneSum(PlayerId.A) == 0 || getPlayerPitStoneSum(PlayerId.B) == 0;
     }
 
     private ConcurrentMap<Integer, Pit> initPits() {
         return IntStream.rangeClosed(GameConstant.PIT_START_ID, GameConstant.PIT_END_ID)
-                .boxed().map(id -> new Pit(id))
+                .boxed().map(Pit::new)
                 .collect(Collectors.toConcurrentMap(Pit::getId, Function.identity()));
     }
 
@@ -25,14 +29,14 @@ public class Board {
         return pits.values().stream()
                 .filter(p -> p.getPitType() == PitType.BOARD)
                 .filter(p -> p.getPlayerId() == playerId)
-                .mapToInt(p -> p.getStoneCount()).sum();
+                .mapToInt(Pit::getStoneCount).sum();
     }
 
     public Pit getHousePit(PlayerId playerId) {
         return pits.values().stream()
                 .filter(p -> p.getPitType() == PitType.HOUSE)
                 .filter(p -> p.getPlayerId() == playerId)
-                .findFirst().get();
+                .findFirst().get(); // TODO throw
 
     }
 
@@ -41,7 +45,7 @@ public class Board {
         return pits.get(nextPitId);
     }
 
-    public Pit getCurrentPit(Integer pitId) {
+    Pit getCurrentPit(Integer pitId) {
         return pits.get(pitId);
     }
 

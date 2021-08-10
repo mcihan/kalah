@@ -2,12 +2,13 @@ package com.cihan.kalah.controller;
 
 
 import com.cihan.kalah.model.Game;
-import com.cihan.kalah.model.dto.MoveGameResponse;
-import com.cihan.kalah.model.dto.StartGameResponse;
+import com.cihan.kalah.controller.dto.MoveGameResponse;
+import com.cihan.kalah.controller.dto.StartGameResponse;
 import com.cihan.kalah.service.GameService;
 import com.cihan.kalah.util.GameValidationUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,11 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Validated
 @Tag(name = "game", description = "Game Controller API")
+@Slf4j
 public class GameController {
 
     @Value("${server.port}")
-    int port;
+    private int port;
 
     private final GameService gameService;
 
@@ -37,6 +39,7 @@ public class GameController {
 
     @PostMapping
     public ResponseEntity<StartGameResponse> create() {
+        log.info("Game Started !");
         Game game = gameService.create();
         StartGameResponse response = new StartGameResponse(game, port);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

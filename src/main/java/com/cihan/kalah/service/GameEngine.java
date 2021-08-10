@@ -1,6 +1,7 @@
 package com.cihan.kalah.service;
 
 import com.cihan.kalah.model.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 @Component
 public class GameEngine {
 
-    public void move(Game game, Integer pitId) {
+     void move(Game game, Integer pitId) {
         if (game.getActivePlayer() == null) {
             game.initActivePlayerByPitId(pitId);
         }

@@ -2,6 +2,7 @@ package com.cihan.kalah.model;
 
 import lombok.Data;
 
+import java.util.Arrays;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public class Board {
     }
 
     public boolean isCompleted() {
-        return getPlayerPitStoneSum(PlayerId.A) == 0 || getPlayerPitStoneSum(PlayerId.B) == 0;
+        return getPlayerPitsStoneSum(PlayerId.A) == 0 || getPlayerPitsStoneSum(PlayerId.B) == 0;
     }
 
     private ConcurrentMap<Integer, Pit> initPits() {
@@ -25,7 +26,7 @@ public class Board {
                 .collect(Collectors.toConcurrentMap(Pit::getId, Function.identity()));
     }
 
-    public int getPlayerPitStoneSum(PlayerId playerId) {
+    public int getPlayerPitsStoneSum(PlayerId playerId) {
         return pits.values().stream()
                 .filter(p -> p.getPitType() == PitType.BOARD)
                 .filter(p -> p.getPlayerId() == playerId)
@@ -45,8 +46,19 @@ public class Board {
         return pits.get(nextPitId);
     }
 
+
     Pit getCurrentPit(Integer pitId) {
         return pits.get(pitId);
     }
 
+    public void collectStonesToHouse() {
+        Arrays.stream(PlayerId.values()).forEach(playerId -> {
+            int stone = getPlayerPitsStoneSum(playerId);
+             getHousePit(playerId).addStoneToPit(stone);
+        });
+    }
+
+    public void resetBoardPitsStone() {
+        pits.values().stream().filter(Pit::isBoardPit).forEach(Pit::resetPitStone);
+    }
 }

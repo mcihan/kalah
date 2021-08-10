@@ -18,7 +18,7 @@ public class UIKahalController {
 
     private final KalahService kalahService;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Game> createForUI() {
         Game game = kalahService.create();
         return ResponseEntity.status(HttpStatus.CREATED).body(game);

@@ -1,50 +1,85 @@
-.fancy {
-  /* Within a circle, centered text looks prettier. */
-  text-align : center;
 
-  /* Let's avoid our text touching the border. As
-     our text will still flow in a square, it looks
-     nicer that way, giving the feeling that it's a "real"
-     circle. */
-  padding : 1em;
-
-  /* The border will make the circle visible.
-     You could also use a background, as
-     backgrounds are clipped by border radius */
-  border : 0.5em solid black;
-
-  /* Let's make sure we have a square.
-     If it's not a square, we'll get an
-     ellipsis rather than a circle ;) */
-  width  : 4em;
-  height : 4em;
-
-  /* and let's turn the square into a circle */
-  border-radius: 100%;
+table {
+    border: 1px solid #ccc!important;
 }
 
 
-.fancy-house {
-  /* Within a circle, centered text looks prettier. */
-  text-align : center;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-  /* Let's avoid our text touching the border. As
-     our text will still flow in a square, it looks
-     nicer that way, giving the feeling that it's a "real"
-     circle. */
-  padding : 1em;
 
-  /* The border will make the circle visible.
-     You could also use a background, as
-     backgrounds are clipped by border radius */
-  border : 1em solid red;
+span.red {
+    background: red;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em;
+}
 
-  /* Let's make sure we have a square.
-     If it's not a square, we'll get an
-     ellipsis rather than a circle ;) */
-  width  : 4em;
-  height : 4em;
+span.grey {
+    background: #cccccc;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em;
+}
 
-  /* and let's turn the square into a circle */
-  border-radius: 0%;
+span.green {
+    background: #5EA226;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em;
+}
+
+span.blue {
+    background: #5178D0;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em;
+    font-size: 100px;
+}
+
+span.pink {
+  /*background: #EF0BD8;*/
+    background: #ff0000;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em;
+    font-size: 60px;
 }

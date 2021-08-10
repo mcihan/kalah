@@ -12,7 +12,7 @@ public class GameEngine {
 
     public void move(Game game, Integer pitId) {
         if (game.getActivePlayer() == null) {
-            game.setActivePlayer(game.getBoard().getCurrentPit(pitId).getPlayerId());
+            game.initActivePlayerByPitId(pitId);
         }
         distributeStones(pitId, game);
         if (isGameOver(game)) {
@@ -26,7 +26,7 @@ public class GameEngine {
         printPits(pits, "before");
         Pit currentPit = pits.get(pitId);
         int stoneOfCurrentPit = currentPit.getStoneCount();
-        pits.put(pitId, currentPit.resetPitStone());
+        currentPit.resetPitStone();
 
         PlayerId activePlayer = game.getActivePlayer();
         boolean shouldTurnToOtherPlayer = true;
@@ -38,7 +38,6 @@ public class GameEngine {
             }
             pit.increasePitStone();
             boolean isLastStoneOfCurrentPit = stoneOfCurrentPit == 1;
-
             if (pit.isPitOwner(activePlayer) && isLastStoneOfCurrentPit) {
                 if (pit.isHousePit()) {
                     shouldTurnToOtherPlayer = false;
@@ -47,19 +46,15 @@ public class GameEngine {
                     Pit housePit = game.getBoard().getHousePit(activePlayer);
                     housePit.setStoneCount(housePit.getStoneCount() + pit.getStoneCount() + oppositePit.getStoneCount());
                     pit.resetPitStone();
-                    pits.put(oppositePit.getId(), oppositePit.resetPitStone());
-                    pits.put(housePit.getId(), housePit);
+                    oppositePit.resetPitStone();
                 }
             }
-            pits.put(pit.getId(), pit);
             stoneOfCurrentPit--;
         }
-
         if (shouldTurnToOtherPlayer) {
             game.turnToOtherPlayer();
         }
         printPits(pits, "-after");
-        game.getBoard().setPits(pits);
     }
 
     private boolean isGameOver(Game game) {
@@ -69,20 +64,18 @@ public class GameEngine {
     }
 
     private void completeGame(Game game) {
+        Board board = game.getBoard();
+        int sumA = board.getPlayerPitStoneSum(PlayerId.A);
+        int sumB = board.getPlayerPitStoneSum(PlayerId.B);
 
-        int sumA = game.getBoard().getPlayerPitStoneSum(PlayerId.A);
-        int sumB = game.getBoard().getPlayerPitStoneSum(PlayerId.B);
-
-        Pit houseA = game.getBoard().getHousePit(PlayerId.A);
+        Pit houseA = board.getHousePit(PlayerId.A);
         houseA.setStoneCount(houseA.getStoneCount() + sumA);
-        game.getBoard().getPits().put(GameConstant.PLAYER_A_HOUSE_ID, houseA);
 
-        Pit houseB = game.getBoard().getHousePit(PlayerId.B);
+        Pit houseB = board.getHousePit(PlayerId.B);
         houseB.setStoneCount(houseB.getStoneCount() + sumB);
-        game.getBoard().getPits().put(GameConstant.PLAYER_B_HOUSE_ID, houseB);
 
         PlayerId winner = houseA.getStoneCount() > houseB.getStoneCount() ? PlayerId.A : PlayerId.B;
-        game.getBoard().getPits().values().stream().filter(Pit::isBoardPit).forEach(Pit::resetPitStone);
+        board.getPits().values().stream().filter(Pit::isBoardPit).forEach(Pit::resetPitStone);
 
         game.setWinner(winner);
         game.setGameStatus(GameStatus.FINISH);

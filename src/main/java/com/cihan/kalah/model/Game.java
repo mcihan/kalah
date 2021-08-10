@@ -1,9 +1,7 @@
 package com.cihan.kalah.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.net.InetAddress;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,7 +24,11 @@ public class Game {
     }
 
     public void turnToOtherPlayer() {
-        PlayerId playerId = activePlayer == PlayerId.A ? PlayerId.B : PlayerId.A;
+        PlayerId playerId = this.activePlayer == PlayerId.A ? PlayerId.B : PlayerId.A;
         setActivePlayer(playerId);
+    }
+
+    public void initActivePlayerByPitId(Integer pitId) {
+        setActivePlayer(this.board.getCurrentPit(pitId).getPlayerId());
     }
 }

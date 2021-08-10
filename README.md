@@ -18,6 +18,21 @@ then run generated *.jar file by `java -jar controller-${version}.jar`
 
 No database installation is needed, as for this test project is chosen in memory H2 DB. 
 
+
+![image info](./screenshots/kalah-ui.png)
+
+
+## Swagger
+
+![image info](./screenshots/swagger.png)
+
+
+
+
+
+
+
+
 ## Usage
 Aster running the project it can be used by any rest client or swagger.
 You can open Swagger by this link: **http://localhost:8080/swagger-ui.html**

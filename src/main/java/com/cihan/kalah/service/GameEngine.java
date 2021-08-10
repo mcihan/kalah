@@ -1,7 +1,6 @@
 package com.cihan.kalah.service;
 
 import com.cihan.kalah.model.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -60,23 +59,13 @@ public class GameEngine {
 
     private void completeGame(Game game) {
         Board board = game.getBoard();
-        int sumA = board.getPlayerPitStoneSum(PlayerId.A);
-        int sumB = board.getPlayerPitStoneSum(PlayerId.B);
+        board.collectStonesToHouse();
+        board.resetBoardPitsStone();
 
-        Pit houseA = board.getHousePit(PlayerId.A);
-        houseA.setStoneCount(houseA.getStoneCount() + sumA);
-
-        Pit houseB = board.getHousePit(PlayerId.B);
-        houseB.setStoneCount(houseB.getStoneCount() + sumB);
-
-        PlayerId winner = houseA.getStoneCount() > houseB.getStoneCount() ? PlayerId.A : PlayerId.B;
-        board.getPits().values().stream().filter(Pit::isBoardPit).forEach(Pit::resetPitStone);
-
-        game.setWinner(winner);
-        game.setGameStatus(GameStatus.FINISH);
+        game.decideWinner();
+        game.finish();
     }
 
-    // TODO ADD OWN EXCEPTIONS
     // TODO MULTI-THREAD - Atomic Int
     //  Game game = kalahRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game Not Found !"));
 

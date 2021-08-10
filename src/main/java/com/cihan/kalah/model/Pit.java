@@ -46,7 +46,11 @@ public class Pit {
     }
 
     public void increasePitStone() {
-        setStoneCount(getStoneCount() + 1);
+        addStoneToPit(1);
+    }
+
+    public void addStoneToPit(int stone){
+        setStoneCount(getStoneCount() + stone);
     }
 
     public Pit resetPitStone() {

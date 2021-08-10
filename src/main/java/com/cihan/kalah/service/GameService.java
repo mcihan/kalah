@@ -1,8 +1,7 @@
 package com.cihan.kalah.service;
 
 import com.cihan.kalah.model.Game;
-import com.cihan.kalah.repository.KalahRepository;
-import com.cihan.kalah.util.GameValidationUtil;
+import com.cihan.kalah.repository.GameRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,19 +9,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GameService {
 
-    private final KalahRepository kalahRepository;
+    private final GameRepository gameRepository;
     private final GameEngine gameEngine;
 
     public Game create() {
-        return kalahRepository.save(new Game());
+        return gameRepository.save(new Game());
     }
 
     public Game move(String gameId, Integer pitId) {
-        Game game = kalahRepository.findById(gameId);
-        GameValidationUtil.moveValidation(game, pitId);
+        Game game = gameRepository.findById(gameId);
+        GameServiceValidator.validateMove(game, pitId);
         gameEngine.move(game, pitId);
-        return kalahRepository.save(game);
+        return gameRepository.save(game);
     }
-
 
 }

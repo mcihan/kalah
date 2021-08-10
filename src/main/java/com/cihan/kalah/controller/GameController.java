@@ -14,9 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/games")
 @RequiredArgsConstructor
@@ -36,43 +33,32 @@ public class GameController {
     // Immutable
     //
 
-     // TODO NOTE Leaky Abstraction
+    // TODO NOTE Leaky Abstraction
 
     @PostMapping
     public ResponseEntity<StartGameResponse> create() {
         Game game = gameService.create();
-
-        // TODO mapper ekle, gameEntity alan constructer yap
         StartGameResponse response = new StartGameResponse(game, port);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 
     @PutMapping("/{gameId}/pits/{pitId}")
-    public ResponseEntity<MoveGameResponse> move(@PathVariable final String gameId,
-                                                 @PathVariable final Integer pitId) {
+    public ResponseEntity<MoveGameResponse> move(@PathVariable final String gameId, @PathVariable final Integer pitId) {
         GameValidationUtil.validateParameters(gameId, pitId);
-
-        Game game = game = gameService.move(gameId, pitId);
-
-        System.out.println("game.getActivePlayer() = " + game.getActivePlayer());
-        System.out.println("game.getWinner() = " + game.getWinner());
-        System.out.println("game.getGameStatus() = " + game.getGameStatus());
-        System.err.println("-----------------------------------------------");
-
-
-
-        // Belki mapper ???
+        Game game = gameService.move(gameId, pitId);
+        printGameInfo(game);
         MoveGameResponse response = new MoveGameResponse(game, port);
-
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 
-
-
-
+    private void printGameInfo(Game game) {
+        System.out.println("game.getActivePlayer() = " + game.getActivePlayer());
+        System.out.println("game.getWinner() = " + game.getWinner());
+        System.out.println("game.getGameStatus() = " + game.getGameStatus());
+        System.err.println("-----------------------------------------------");
+    }
 
 
 }

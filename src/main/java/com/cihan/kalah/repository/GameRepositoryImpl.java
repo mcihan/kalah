@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class KalahRepositoryImpl implements KalahRepository {
+public class GameRepositoryImpl implements GameRepository {
 
     private final Map<String, Game> repository = new HashMap<>();
 

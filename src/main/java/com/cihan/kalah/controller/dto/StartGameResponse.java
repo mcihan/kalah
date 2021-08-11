@@ -1,12 +1,11 @@
 package com.cihan.kalah.controller.dto;
 
 import com.cihan.kalah.model.Game;
+import com.cihan.kalah.util.ResponseUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.Getter;
 
-import java.net.InetAddress;
-
-@Data
+@Getter
 @Schema(name = "StartGameResponse", description = "Example Start Game Response")
 public class StartGameResponse {
     private final String id;
@@ -14,11 +13,6 @@ public class StartGameResponse {
 
     public StartGameResponse(final Game game, int port) {
         this.id = game.getId();
-        this.uri = generateGameUrl(game, port);
+        this.uri = ResponseUtil.generateGameUrl(game, port);
     }
-
-    private static String generateGameUrl(Game game, int port) {
-        return String.format("http://%s:%s/games/%s", InetAddress.getLoopbackAddress().getHostName(), port, game.getId());
-    }
-
 }

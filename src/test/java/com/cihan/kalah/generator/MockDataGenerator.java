@@ -12,15 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MockDataGenerator {
 
-    public static Game generateGame(){
+
+    public static Game generateGame() {
         return new Game();
     }
 
-    public static Game generateFinishedGame(){
+    public static Game generateFinishedGame() {
         Game game = generateGame();
         game.setGameStatus(GameStatus.FINISH);
         return game;
     }
 
+    public static int getSystemPort(){
+        return 8080;
+    }
 
 }

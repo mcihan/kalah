@@ -1,8 +1,8 @@
 package com.cihan.kalah.model;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class Player {
     private PlayerId playerId;
     private String name;

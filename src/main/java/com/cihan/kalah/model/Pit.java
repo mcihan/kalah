@@ -1,8 +1,10 @@
 package com.cihan.kalah.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Pit {
     private Integer id;
     private int stoneCount;

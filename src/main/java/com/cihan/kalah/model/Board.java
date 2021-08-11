@@ -1,7 +1,7 @@
 package com.cihan.kalah.model;
 
 import com.cihan.kalah.exception.GameException;
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentMap;
@@ -9,7 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@Data
+@Getter
 public class Board {
     private ConcurrentMap<Integer, Pit> pits;
     private Pit latestPit;

@@ -1,13 +1,15 @@
 package com.cihan.kalah.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Data
+@Getter
+@Setter
 @Slf4j
 public class Game {
     private String id;

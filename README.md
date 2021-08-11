@@ -4,10 +4,20 @@
 https://en.wikipedia.org/wiki/Kalah
 
 ## Build
-mvn clean install
+
+Linux and OSX  
+./mvnw clean install
+
+Windows  
+./mvnw.bat clean install     
+
 
 ## Run
-mvn spring-boot:run
+Linux and OSX  
+./mvnw  spring-boot:run
+
+Windows  
+./mvnw.bat spring-boot:run
 
 ## Play
 Either use curl, or hit the local endpoint Swagger harness http://localhost:8080/swagger-ui.html
@@ -16,29 +26,7 @@ curl --header "Content-Type: application/json" --request POST http://localhost:8
 
 curl --header "Content-Type: application/json" --request PUT http://localhost:8080/games/{gameId}/pits/{pitId}
 
-
-
-## Kalah game project
-This is  Kalah game project with 6 pits and in each one 6 stones,
-but it's configurable, you can change it to **n** pits and **m** stones.
-To change them please have a look to service.properties file.
-Also enterGame can be changed to receive pits and stones count.
-
-## Run
-This project can be run by two ways:
-
-1. Run controller module (com.backbase.kalah.KalahApplication class) from your IDE.
-
-2. Build controller module by `mvn clean package` command and 
-then run generated *.jar file by `java -jar controller-${version}.jar`
-
-**Note** if you don't have installed maven instead of mvn use mvnw or mvnw.cmd depends on your OS.
-
-**Note** instead of ${version} should be written right version of the project. E.g. 0.0.1-SNAPSHOT
-
-No database installation is needed, as for this test project is chosen in memory H2 DB. 
-
-
+ 
 ![image info](./screenshots/kalah-ui.png)
 
 
@@ -46,12 +34,7 @@ No database installation is needed, as for this test project is chosen in memory
 
 ![image info](./screenshots/swagger.png)
 
-
-
-
-
-
-
+ 
 
 ## Usage
 Aster running the project it can be used by any rest client or swagger.

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Component
 public class GameEngine {
 
-     void move(Game game, Integer pitId) {
+    void move(Game game, Integer pitId) {
         if (game.getActivePlayer() == null) {
             game.initActivePlayerByPitId(pitId);
         }
@@ -22,39 +22,39 @@ public class GameEngine {
 
     private void distributeStones(Integer pitId, Game game) {
         ConcurrentMap<Integer, Pit> pits = game.getBoard().getPits();
-        System.out.println("pitId = " + pitId);
-        printPits(pits, "before");
+/*        System.out.println("pitId = " + pitId);
+        printPits(pits, "before");*/
         Pit currentPit = pits.get(pitId);
-        int stoneOfCurrentPit = currentPit.getStoneCount();
+        int currentPitStone = currentPit.getStoneCount();
         currentPit.resetPitStone();
 
-        PlayerId activePlayer = game.getActivePlayer();
-        boolean shouldTurnToOtherPlayer = true;
-
-        while (stoneOfCurrentPit > 0) {
+        while (currentPitStone-- > 1) {
             Pit pit = game.getBoard().getNextPit(++pitId);
-            if (pit.isOppositeHouse(activePlayer)) {
-                continue;
+            if (pit.isDistributablePit(game.getActivePlayer())) {
+                pit.increasePitStone();
             }
-            pit.increasePitStone();
-            boolean isLastStoneOfCurrentPit = stoneOfCurrentPit == 1;
-            if (pit.isPitOwner(activePlayer) && isLastStoneOfCurrentPit) {
-                if (pit.isHousePit()) {
-                    shouldTurnToOtherPlayer = false;
-                } else if (pit.getStoneCount() == 1) {
-                    Pit oppositePit = pits.get(GameConstant.PIT_END_ID - pit.getId());
-                    Pit housePit = game.getBoard().getHousePit(activePlayer);
-                    housePit.setStoneCount(housePit.getStoneCount() + pit.getStoneCount() + oppositePit.getStoneCount());
-                    pit.resetPitStone();
-                    oppositePit.resetPitStone();
-                }
-            }
-            stoneOfCurrentPit--;
         }
-        if (shouldTurnToOtherPlayer) {
+
+        Pit latestPit = pits.get(pitId);
+        captureOppositePitStone(game, latestPit);
+        turnToOtherPlayer(game, latestPit);
+        printPits(pits, "-after");
+    }
+
+    private void captureOppositePitStone(Game game, Pit pit) {
+        if (shouldCaptureOppositePitStone(game, pit)) {
+            game.captureOppositePitStone(pit.getId());
+        }
+    }
+
+
+
+    private void turnToOtherPlayer(Game game, Pit pit) {
+        if (pit.isActivePlayersHousePit(game.getActivePlayer())) {
+            pit.increasePitStone();
+        }else {
             game.turnToOtherPlayer();
         }
-        printPits(pits, "-after");
     }
 
     private void completeGame(Game game) {
@@ -65,6 +65,12 @@ public class GameEngine {
         game.decideWinner();
         game.finish();
     }
+
+    private boolean shouldCaptureOppositePitStone(Game game, Pit pit) {
+        PlayerId activePlayer = game.getActivePlayer();
+        return pit.isPitOwner(activePlayer) && pit.isBoardPit() && pit.getStoneCount() == 1;
+    }
+
 
     // TODO MULTI-THREAD - Atomic Int
     //  Game game = kalahRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game Not Found !"));

@@ -29,7 +29,7 @@ public class Game {
     }
 
     public void initActivePlayerByPitId(Integer pitId) {
-        setActivePlayer(this.board.getCurrentPit(pitId).getPlayerId());
+        setActivePlayer(this.board.getPitById(pitId).getPlayerId());
     }
 
     public boolean isOver() {
@@ -51,5 +51,9 @@ public class Game {
 
     public void finish() {
         setGameStatus(GameStatus.FINISH);
+    }
+
+    public void captureOppositePitStone(Integer pitId) {
+        board.captureOppositePitStone(activePlayer, pitId);
     }
 }

@@ -28,6 +28,10 @@ public class Pit {
         return isHousePit() ? GameConstant.HOUSE_STONE_COUNT : GameConstant.DEFAULT_STONE_COUNT;
     }
 
+    public boolean isDistributablePit(PlayerId playerId) {
+        return !isOppositeHouse(playerId);
+    }
+
     public boolean isOppositeHouse(PlayerId playerId) {
         return isHousePit() && !isPitOwner(playerId);
     }
@@ -36,9 +40,12 @@ public class Pit {
         return playerId == this.playerId;
     }
 
-
     public boolean isHousePit() {
         return pitType == PitType.HOUSE;
+    }
+
+    public boolean isActivePlayersHousePit(PlayerId playerId) {
+        return isPitOwner(playerId) && isHousePit();
     }
 
     public boolean isBoardPit() {
@@ -49,7 +56,7 @@ public class Pit {
         addStoneToPit(1);
     }
 
-    public void addStoneToPit(int stone){
+    public void addStoneToPit(int stone) {
         setStoneCount(getStoneCount() + stone);
     }
 

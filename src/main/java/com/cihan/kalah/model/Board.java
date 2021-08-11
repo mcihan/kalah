@@ -47,9 +47,14 @@ public class Board {
     }
 
 
-    Pit getCurrentPit(Integer pitId) {
+    public Pit getPitById(Integer pitId) {
         return pits.get(pitId);
     }
+
+    public Pit getOppositePit(int pitId){
+        return pits.get(GameConstant.PIT_END_ID - pitId);
+    }
+
 
     public void collectStonesToHouse() {
         Arrays.stream(PlayerId.values()).forEach(playerId -> {
@@ -60,5 +65,14 @@ public class Board {
 
     public void resetBoardPitsStone() {
         pits.values().stream().filter(Pit::isBoardPit).forEach(Pit::resetPitStone);
+    }
+
+    public void captureOppositePitStone(PlayerId activePlayer, Integer pitId) {
+        Pit pit = getPitById(pitId);
+        Pit oppositePit = getOppositePit(pitId);
+        Pit housePit = getHousePit(activePlayer);
+        housePit.addStoneToPit(pit.getStoneCount() + oppositePit.getStoneCount());
+        pit.resetPitStone();
+        oppositePit.resetPitStone();
     }
 }

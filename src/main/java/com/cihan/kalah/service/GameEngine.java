@@ -12,7 +12,7 @@ public class GameEngine {
     void executeGameFlow(Game game, Integer pitId) {
         determineToActivePlayer(game, pitId);
         distributeStones(game, pitId);
-        applyLastPitRules(game, pitId);
+        applyLastPitRules(game);
         completeGame(game);
     }
 
@@ -35,8 +35,8 @@ public class GameEngine {
         }
     }
 
-    private void applyLastPitRules(Game game, Integer pitId) {
-        Pit latestPit = game.getBoard().getNextPit(pitId);
+    private void applyLastPitRules(Game game) {
+        Pit latestPit = game.getBoard().getLatestPit();
         captureOppositePitStone(game, latestPit);
         turnToOtherPlayer(game, latestPit);
     }

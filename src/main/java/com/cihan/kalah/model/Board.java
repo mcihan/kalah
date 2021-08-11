@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 @Data
 public class Board {
     private ConcurrentMap<Integer, Pit> pits;
+    private Pit latestPit;
 
     Board() {
         this.pits = initPits();
@@ -19,7 +20,8 @@ public class Board {
 
     public Pit getNextPit(Integer pitId) {
         int nextPitId = pitId <= GameConstant.PIT_END_ID ? pitId : pitId % GameConstant.PIT_END_ID;
-        return pits.get(nextPitId);
+        latestPit =  pits.get(nextPitId);
+        return latestPit;
     }
 
 

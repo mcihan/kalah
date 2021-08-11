@@ -4,9 +4,9 @@ import com.cihan.kalah.model.Board;
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.model.Pit;
 import com.cihan.kalah.model.PlayerId;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class GameEngine {
 
     void executeGameFlow(Game game, Integer pitId) {

@@ -1,5 +1,6 @@
 package com.cihan.kalah.controller;
 
+import com.cihan.kalah.exception.ExceptionConstant;
 import com.cihan.kalah.exception.GameException;
 import com.cihan.kalah.model.GameConstant;
 import lombok.AccessLevel;
@@ -10,19 +11,19 @@ import org.apache.commons.lang3.StringUtils;
 class RequestValidator {
     static void validateParameters(String gameId, Integer pitId) {
         if (StringUtils.isBlank(gameId)) {
-            throw new GameException("gameId can not be empty!");
+            throw new GameException(ExceptionConstant.EMPTY_GAME_ID);
         }
 
         if (pitId == null) {
-            throw new GameException("pitId can not be empty!");
+            throw new GameException(ExceptionConstant.EMPTY_PIT_ID);
         }
 
-        if (pitId % GameConstant.PIT_MEDIAN_ID == 0) {
-            throw new GameException("You can not start from house");
+        if (pitId == GameConstant.HOUSE_A_PIT_ID || pitId == GameConstant.HOUSE_B_PIT_ID) {
+            throw new GameException(ExceptionConstant.NOT_START_FROM_HOUSE);
         }
 
         if (pitId < GameConstant.PIT_START_ID || pitId > GameConstant.PIT_END_ID) {
-            throw new GameException(String.format("pitId should be between %d and %d", GameConstant.PIT_START_ID, GameConstant.PIT_END_ID));
+            throw new GameException(ExceptionConstant.INVALID_PIT_ID);
         }
     }
 }

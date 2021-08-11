@@ -18,7 +18,7 @@ public class MoveGameResponse {
     public MoveGameResponse(Game game, int port) {
         this.id = game.getId();
         this.url = ResponseUtil.generateGameUrl(game, port);
-        this.status = ResponseUtil.getIntegerIntegerMap(game);
+        this.status = ResponseUtil.generateMoveGameStatus(game);
     }
 
 

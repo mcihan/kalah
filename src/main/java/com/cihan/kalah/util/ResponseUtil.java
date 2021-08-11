@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResponseUtil {
-    public static Map<Integer, Integer> getIntegerIntegerMap(Game game) {
+    public static Map<Integer, Integer> generateMoveGameStatus(Game game) {
         return game.getBoard().getPits().entrySet().stream()
                     .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getStoneCount()));
     }

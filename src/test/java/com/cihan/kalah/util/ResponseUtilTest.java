@@ -1,16 +1,30 @@
 package com.cihan.kalah.util;
 
+import com.cihan.kalah.generator.MockDataGenerator;
+import com.cihan.kalah.model.Game;
+import com.cihan.kalah.model.Pit;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ResponseUtilTest {
 
     @Test
-    void getIntegerIntegerMap() {
+    void shouldGenerateMoveGameStatus() {
+        int pitId = 1;
+        Game game = MockDataGenerator.generateGame();
+        Map<Integer, Integer> status = ResponseUtil.generateMoveGameStatus(game);
+        Pit pit = game.getBoard().getPitById(pitId);
+        assertEquals(pit.getStoneCount(), status.get(pitId));
     }
 
     @Test
-    void generateGameUrl() {
+    void shouldGenerateGameUrl() {
+        Game game = MockDataGenerator.generateGame();
+        String expectedGameUrl = "http://localhost:8080/games/"+game.getId();
+        String gameUrl = ResponseUtil.generateGameUrl(game, 8080);
+        assertEquals(expectedGameUrl, gameUrl);
     }
 }

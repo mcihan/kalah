@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-class ExceptionResponse {
+public class ExceptionResponse {
 
     private final String message;
     private final HttpStatus status;
@@ -14,8 +14,8 @@ class ExceptionResponse {
         this.message = message;
     }
 
-    static ExceptionResponse of(final String message) {
-        return new ExceptionResponse(message, HttpStatus.BAD_REQUEST);
+    static ExceptionResponse of(final String message, final HttpStatus status) {
+        return new ExceptionResponse(message, status);
     }
 
 }

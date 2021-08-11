@@ -19,7 +19,7 @@ public class GameService {
     public Game move(String gameId, Integer pitId) {
         Game game = gameRepository.findById(gameId);
         GameServiceValidator.validateMove(game, pitId);
-        gameEngine.move(game, pitId);
+        gameEngine.executeGameFlow(game, pitId);
         return gameRepository.save(game);
     }
 

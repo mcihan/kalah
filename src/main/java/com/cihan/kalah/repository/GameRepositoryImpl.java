@@ -1,5 +1,6 @@
 package com.cihan.kalah.repository;
 
+import com.cihan.kalah.exception.GameException;
 import com.cihan.kalah.model.Game;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,11 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public Game findById(String id) {
-        return repository.get(id);
+        Game game = repository.get(id);
+        if (game == null) {
+            throw new GameException("Game is not found!");
+        }
+        return game;
     }
 
 

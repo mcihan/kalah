@@ -5,7 +5,6 @@ import com.cihan.kalah.model.Game;
 import com.cihan.kalah.controller.dto.MoveGameResponse;
 import com.cihan.kalah.controller.dto.StartGameResponse;
 import com.cihan.kalah.service.GameService;
-import com.cihan.kalah.util.GameValidationUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +47,7 @@ public class GameController {
 
     @PutMapping("/{gameId}/pits/{pitId}")
     public ResponseEntity<MoveGameResponse> move(@PathVariable final String gameId, @PathVariable final Integer pitId) {
-        GameValidationUtil.validateParameters(gameId, pitId);
+        RequestValidator.validateParameters(gameId, pitId);
         Game game = gameService.move(gameId, pitId);
         printGameInfo(game);
         MoveGameResponse response = new MoveGameResponse(game, port);

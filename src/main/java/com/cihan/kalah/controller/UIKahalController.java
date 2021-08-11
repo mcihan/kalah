@@ -2,7 +2,6 @@ package com.cihan.kalah.controller;
 
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.service.GameService;
-import com.cihan.kalah.util.GameValidationUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,7 @@ public class UIKahalController {
     @PutMapping("/{gameId}/pits/{pitId}")
     public ResponseEntity moveForUI(@PathVariable final String gameId,
                                     @PathVariable final Integer pitId) {
-        GameValidationUtil.validateParameters(gameId, pitId);
+        RequestValidator.validateParameters(gameId, pitId);
 
         Game game = gameService.move(gameId, pitId);
 

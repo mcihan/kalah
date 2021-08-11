@@ -1,5 +1,6 @@
 package com.cihan.kalah.model;
 
+import com.cihan.kalah.exception.GameException;
 import lombok.Data;
 
 import java.util.Arrays;
@@ -16,31 +17,6 @@ public class Board {
         this.pits = initPits();
     }
 
-    public boolean isCompleted() {
-        return getPlayerPitsStoneSum(PlayerId.A) == 0 || getPlayerPitsStoneSum(PlayerId.B) == 0;
-    }
-
-    private ConcurrentMap<Integer, Pit> initPits() {
-        return IntStream.rangeClosed(GameConstant.PIT_START_ID, GameConstant.PIT_END_ID)
-                .boxed().map(Pit::new)
-                .collect(Collectors.toConcurrentMap(Pit::getId, Function.identity()));
-    }
-
-    public int getPlayerPitsStoneSum(PlayerId playerId) {
-        return pits.values().stream()
-                .filter(p -> p.getPitType() == PitType.BOARD)
-                .filter(p -> p.getPlayerId() == playerId)
-                .mapToInt(Pit::getStoneCount).sum();
-    }
-
-    public Pit getHousePit(PlayerId playerId) {
-        return pits.values().stream()
-                .filter(p -> p.getPitType() == PitType.HOUSE)
-                .filter(p -> p.getPlayerId() == playerId)
-                .findFirst().get(); // TODO throw
-
-    }
-
     public Pit getNextPit(Integer pitId) {
         int nextPitId = pitId <= GameConstant.PIT_END_ID ? pitId : pitId % GameConstant.PIT_END_ID;
         return pits.get(nextPitId);
@@ -51,15 +27,10 @@ public class Board {
         return pits.get(pitId);
     }
 
-    public Pit getOppositePit(int pitId){
-        return pits.get(GameConstant.PIT_END_ID - pitId);
-    }
-
-
     public void collectStonesToHouse() {
         Arrays.stream(PlayerId.values()).forEach(playerId -> {
             int stone = getPlayerPitsStoneSum(playerId);
-             getHousePit(playerId).addStoneToPit(stone);
+            getHousePit(playerId).addStoneToPit(stone);
         });
     }
 
@@ -67,12 +38,40 @@ public class Board {
         pits.values().stream().filter(Pit::isBoardPit).forEach(Pit::resetPitStone);
     }
 
-    public void captureOppositePitStone(PlayerId activePlayer, Integer pitId) {
+    boolean isCompleted() {
+        return getPlayerPitsStoneSum(PlayerId.A) == 0 || getPlayerPitsStoneSum(PlayerId.B) == 0;
+    }
+
+    Pit getHousePit(PlayerId playerId) {
+        return pits.values().stream()
+                .filter(p -> p.getPitType() == PitType.HOUSE)
+                .filter(p -> p.getPlayerId() == playerId)
+                .findFirst().orElseThrow(() -> new GameException("Pit is not found!"));
+    }
+
+    void captureOppositePitStone(PlayerId activePlayer, Integer pitId) {
         Pit pit = getPitById(pitId);
         Pit oppositePit = getOppositePit(pitId);
         Pit housePit = getHousePit(activePlayer);
         housePit.addStoneToPit(pit.getStoneCount() + oppositePit.getStoneCount());
         pit.resetPitStone();
         oppositePit.resetPitStone();
+    }
+
+    private ConcurrentMap<Integer, Pit> initPits() {
+        return IntStream.rangeClosed(GameConstant.PIT_START_ID, GameConstant.PIT_END_ID)
+                .boxed().map(Pit::new)
+                .collect(Collectors.toConcurrentMap(Pit::getId, Function.identity()));
+    }
+
+    private int getPlayerPitsStoneSum(PlayerId playerId) {
+        return pits.values().stream()
+                .filter(p -> p.getPitType() == PitType.BOARD)
+                .filter(p -> p.getPlayerId() == playerId)
+                .mapToInt(Pit::getStoneCount).sum();
+    }
+
+    private Pit getOppositePit(int pitId) {
+        return pits.get(GameConstant.PIT_END_ID - pitId);
     }
 }

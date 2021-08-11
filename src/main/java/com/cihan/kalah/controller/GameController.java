@@ -1,9 +1,9 @@
 package com.cihan.kalah.controller;
 
 
-import com.cihan.kalah.model.Game;
 import com.cihan.kalah.controller.dto.MoveGameResponse;
 import com.cihan.kalah.controller.dto.StartGameResponse;
+import com.cihan.kalah.model.Game;
 import com.cihan.kalah.service.GameService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -27,15 +27,6 @@ public class GameController {
 
     private final GameService gameService;
 
-    // TODO
-    // Controller   - Service   - Repository
-    // Dto          - Model     - Entity
-    // GameRequest  - Game      - GameEntity
-    // Immutable
-    //
-
-    // TODO NOTE Leaky Abstraction
-
     @PostMapping
     public ResponseEntity<StartGameResponse> create() {
         log.info("Game Started !");
@@ -44,7 +35,6 @@ public class GameController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
     @PutMapping("/{gameId}/pits/{pitId}")
     public ResponseEntity<MoveGameResponse> move(@PathVariable final String gameId, @PathVariable final Integer pitId) {
         RequestValidator.validateParameters(gameId, pitId);
@@ -52,7 +42,6 @@ public class GameController {
         printGameInfo(game);
         MoveGameResponse response = new MoveGameResponse(game, port);
         return ResponseEntity.status(HttpStatus.OK).body(response);
-
     }
 
     private void printGameInfo(Game game) {
@@ -61,6 +50,5 @@ public class GameController {
         System.out.println("game.getGameStatus() = " + game.getGameStatus());
         System.err.println("-----------------------------------------------");
     }
-
 
 }

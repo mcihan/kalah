@@ -1,4 +1,5 @@
 package com.cihan.kalah.model;
+
 import lombok.Data;
 
 @Data
@@ -10,5 +11,4 @@ public class Player {
         this.name = name;
         this.playerId = type;
     }
-
 }

@@ -9,7 +9,7 @@ public class Pit {
     private PitType pitType;
     private PlayerId playerId;
 
-    public Pit(int id) {
+    Pit(int id) {
         this.id = id;
         this.pitType = initPitType();
         this.playerId = initPlayerId();
@@ -32,7 +32,7 @@ public class Pit {
         return !isOppositeHouse(playerId);
     }
 
-    public boolean isOppositeHouse(PlayerId playerId) {
+    private boolean isOppositeHouse(PlayerId playerId) {
         return isHousePit() && !isPitOwner(playerId);
     }
 
@@ -56,13 +56,12 @@ public class Pit {
         addStoneToPit(1);
     }
 
-    public void addStoneToPit(int stone) {
+    void addStoneToPit(int stone) {
         setStoneCount(getStoneCount() + stone);
     }
 
-    public Pit resetPitStone() {
+    public void resetPitStone() {
         setStoneCount(0);
-        return this;
     }
 
 }

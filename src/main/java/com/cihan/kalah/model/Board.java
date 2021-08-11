@@ -20,10 +20,9 @@ public class Board {
 
     public Pit getNextPit(Integer pitId) {
         int nextPitId = pitId <= GameConstant.PIT_END_ID ? pitId : pitId % GameConstant.PIT_END_ID;
-        latestPit =  pits.get(nextPitId);
+        latestPit = pits.get(nextPitId);
         return latestPit;
     }
-
 
     public Pit getPitById(Integer pitId) {
         return pits.get(pitId);

@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @Slf4j
 public class Game {
     private String id;
-    private List<Player> players; //TODO Player A, PlayerB
+    private List<Player> players;
     private PlayerId winner;
     private PlayerId activePlayer;
     private GameStatus gameStatus;
@@ -39,12 +39,10 @@ public class Game {
     public void decideWinner() {
         int houseAStones = board.getHousePit(PlayerId.A).getStoneCount();
         int houseBStones = board.getHousePit(PlayerId.B).getStoneCount();
-
         if (houseAStones == houseBStones) {
             log.info("Game ended in a draw!");
             return;
         }
-
         PlayerId winner = houseAStones > houseBStones ? PlayerId.A : PlayerId.B;
         setWinner(winner);
     }

@@ -84,7 +84,6 @@ class BoardTest {
     }
 
     @Test
-        //TODO BUG
     void shouldNotResetHousePitsStone() {
         Integer pitId = GameConstant.HOUSE_A_PIT_ID;
         Game game = MockDataGenerator.generateGame();

@@ -1,5 +1,6 @@
 package com.cihan.kalah.model;
 
+import com.cihan.kalah.generator.MockDataGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,8 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class BoardTest {
@@ -87,12 +87,13 @@ class BoardTest {
         //TODO BUG
     void shouldNotResetHousePitsStone() {
         Integer pitId = GameConstant.HOUSE_A_PIT_ID;
-        Board board = new Board();
+        Game game = MockDataGenerator.generateGame();
+        Pit houseA = game.getBoard().getPitById(pitId);
+        houseA.increasePitStone();
 
-        board.resetBoardPitsStone();
+        game.getBoard().resetBoardPitsStone();
 
-        Pit pit = board.getPitById(pitId);
-        // assertNotEquals(0, pit.getStoneCount());
+        assertNotEquals(0, houseA.getStoneCount());
     }
 
     @Test

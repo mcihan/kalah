@@ -19,7 +19,7 @@ public class MockDataGenerator {
 
     public static Game generateFinishedGame() {
         Game game = generateGame();
-        game.setGameStatus(GameStatus.FINISH);
+        game.finish();
         return game;
     }
 

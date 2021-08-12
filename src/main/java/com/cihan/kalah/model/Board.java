@@ -19,14 +19,10 @@ public class Board {
         this.pits = initPits();
     }
 
-    public Pit advanceToNextPit(Integer pitId) {
-        int nextPitId = pitId <= GameConstant.PIT_END_ID ? pitId : pitId % GameConstant.PIT_END_ID;
-        latestPit = pits.get(nextPitId);
-        return latestPit;
-    }
-
-    public Pit getPitById(Integer pitId) {
-        return pits.get(pitId);
+    private ConcurrentMap<Integer, Pit> initPits() {
+        return IntStream.rangeClosed(GameConstant.PIT_START_ID, GameConstant.PIT_END_ID)
+                .boxed().map(Pit::new)
+                .collect(Collectors.toConcurrentMap(Pit::getId, Function.identity()));
     }
 
     public void collectStonesToHouse() {
@@ -40,15 +36,10 @@ public class Board {
         pits.values().stream().filter(Pit::isBoardPit).forEach(Pit::resetPitStone);
     }
 
-    boolean isCompleted() {
-        return getPlayerPitsStoneSum(PlayerId.A) == 0 || getPlayerPitsStoneSum(PlayerId.B) == 0;
-    }
-
-    Pit getHousePit(PlayerId playerId) {
-        return pits.values().stream()
-                .filter(Pit::isHousePit)
-                .filter(p -> p.getPlayerId() == playerId)
-                .findFirst().orElseThrow(() -> new GameException(ExceptionConstant.PIT_NOT_FOUND));
+    public Pit advanceToNextPit(Integer pitId) {
+        int nextPitId = pitId <= GameConstant.PIT_END_ID ? pitId : pitId % GameConstant.PIT_END_ID;
+        latestPit = pits.get(nextPitId);
+        return latestPit;
     }
 
     void captureOppositePitStone(PlayerId activePlayer, Integer pitId) {
@@ -60,11 +51,26 @@ public class Board {
         oppositePit.resetPitStone();
     }
 
-    private ConcurrentMap<Integer, Pit> initPits() {
-        return IntStream.rangeClosed(GameConstant.PIT_START_ID, GameConstant.PIT_END_ID)
-                .boxed().map(Pit::new)
-                .collect(Collectors.toConcurrentMap(Pit::getId, Function.identity()));
+    public Pit getPitById(Integer pitId) {
+        return pits.get(pitId);
     }
+
+
+    boolean isCompleted() {
+        return getPlayerPitsStoneSum(PlayerId.A) == 0 || getPlayerPitsStoneSum(PlayerId.B) == 0;
+    }
+
+    Pit getHousePit(PlayerId playerId) {
+        return pits.values().stream()
+                .filter(Pit::isHousePit)
+                .filter(p -> p.getPlayerId() == playerId)
+                .findFirst().orElseThrow(() -> new GameException(ExceptionConstant.PIT_NOT_FOUND));
+    }
+
+    Pit getOppositePit(int pitId) {
+        return pits.get(GameConstant.PIT_END_ID - pitId);
+    }
+
 
     private int getPlayerPitsStoneSum(PlayerId playerId) {
         return pits.values().stream()
@@ -73,7 +79,4 @@ public class Board {
                 .mapToInt(Pit::getStoneCount).sum();
     }
 
-    private Pit getOppositePit(int pitId) {
-        return pits.get(GameConstant.PIT_END_ID - pitId);
-    }
 }

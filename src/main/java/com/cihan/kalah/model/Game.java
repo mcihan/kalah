@@ -1,7 +1,6 @@
 package com.cihan.kalah.model;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Getter
-@Setter
 @Slf4j
 public class Game {
     private String id;
@@ -27,33 +25,32 @@ public class Game {
     }
 
     public void turnToOtherPlayer() {
-        activePlayer = activePlayer == PlayerId.A ? PlayerId.B : PlayerId.A;
+        this.activePlayer = this.activePlayer == PlayerId.A ? PlayerId.B : PlayerId.A;
     }
 
     public void initActivePlayerByPitId(Integer pitId) {
-        setActivePlayer(this.board.getPitById(pitId).getPlayerId());
+        this.activePlayer = this.board.getPitById(pitId).getPlayerId();
     }
 
     public boolean isOver() {
-        return board.isCompleted();
+        return this.board.isCompleted();
     }
 
     public void determineWinner() {
-        int houseAStones = board.getHousePit(PlayerId.A).getStoneCount();
-        int houseBStones = board.getHousePit(PlayerId.B).getStoneCount();
+        int houseAStones = this.board.getHousePit(PlayerId.A).getStoneCount();
+        int houseBStones = this.board.getHousePit(PlayerId.B).getStoneCount();
         if (houseAStones == houseBStones) {
             log.info("Game ended in a draw!");
             return;
         }
-        PlayerId winner = houseAStones > houseBStones ? PlayerId.A : PlayerId.B;
-        setWinner(winner);
+        this.winner = houseAStones > houseBStones ? PlayerId.A : PlayerId.B;
     }
 
     public void finish() {
-        setGameStatus(GameStatus.FINISH);
+        this.gameStatus = GameStatus.FINISH;
     }
 
     public void captureOppositePitStone(Integer pitId) {
-        board.captureOppositePitStone(activePlayer, pitId);
+        this.board.captureOppositePitStone(this.activePlayer, pitId);
     }
 }

@@ -27,7 +27,8 @@ class GameServiceValidatorTest {
     void shouldValidateTurn() {
         Integer pitId = 1;
         Game game = MockDataGenerator.generateGame();
-        game.setActivePlayer(PlayerId.B);
+        game.initActivePlayerByPitId(pitId);
+        game.turnToOtherPlayer();
 
         GameException exception = assertThrows(GameException.class,
                 () -> GameServiceValidator.validateMove(game, pitId));

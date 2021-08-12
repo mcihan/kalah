@@ -38,7 +38,7 @@ public class Game {
         return board.isCompleted();
     }
 
-    public void decideWinner() {
+    public void determineWinner() {
         int houseAStones = board.getHousePit(PlayerId.A).getStoneCount();
         int houseBStones = board.getHousePit(PlayerId.B).getStoneCount();
         if (houseAStones == houseBStones) {

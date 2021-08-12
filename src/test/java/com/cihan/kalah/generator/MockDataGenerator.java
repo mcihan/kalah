@@ -23,7 +23,7 @@ public class MockDataGenerator {
         return game;
     }
 
-    public static int getSystemPort(){
+    public static int getSystemPort() {
         return 8080;
     }
 

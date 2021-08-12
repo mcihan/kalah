@@ -1,5 +1,6 @@
 package com.cihan.kalah.model;
 
+import com.cihan.kalah.exception.ExceptionConstant;
 import com.cihan.kalah.exception.GameException;
 import lombok.Getter;
 
@@ -18,7 +19,7 @@ public class Board {
         this.pits = initPits();
     }
 
-    public Pit getNextPit(Integer pitId) {
+    public Pit advanceToNextPit(Integer pitId) {
         int nextPitId = pitId <= GameConstant.PIT_END_ID ? pitId : pitId % GameConstant.PIT_END_ID;
         latestPit = pits.get(nextPitId);
         return latestPit;
@@ -45,9 +46,9 @@ public class Board {
 
     Pit getHousePit(PlayerId playerId) {
         return pits.values().stream()
-                .filter(p -> p.getPitType() == PitType.HOUSE)
+                .filter(Pit::isBoardPit)
                 .filter(p -> p.getPlayerId() == playerId)
-                .findFirst().orElseThrow(() -> new GameException("Pit is not found!"));
+                .findFirst().orElseThrow(() -> new GameException(ExceptionConstant.PIT_NOT_FOUND));
     }
 
     void captureOppositePitStone(PlayerId activePlayer, Integer pitId) {
@@ -67,7 +68,7 @@ public class Board {
 
     private int getPlayerPitsStoneSum(PlayerId playerId) {
         return pits.values().stream()
-                .filter(p -> p.getPitType() == PitType.BOARD)
+                .filter(Pit::isBoardPit)
                 .filter(p -> p.getPlayerId() == playerId)
                 .mapToInt(Pit::getStoneCount).sum();
     }

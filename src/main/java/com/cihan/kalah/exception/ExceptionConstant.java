@@ -21,4 +21,5 @@ public class ExceptionConstant {
     public static final String CANT_MOVE_EMPTY_PIT = "You can't distribute empty pit!";
 
     public static final String GAME_NOT_FOUND = "Game is not found!";
+    public static final String PIT_NOT_FOUND = "Pit is not found!";
 }

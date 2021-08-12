@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class GameRepositoryImplTest {
 
     @InjectMocks
-    GameRepositoryImpl gameRepository;
+    private GameRepositoryImpl gameRepository;
 
     @Test
     void shouldSaveGame() {

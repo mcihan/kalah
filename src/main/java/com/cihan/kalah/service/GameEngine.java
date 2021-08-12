@@ -28,7 +28,7 @@ public class GameEngine {
         int currentPitStone = currentPit.getStoneCount();
         currentPit.resetPitStone();
         while (currentPitStone-- > 0) {
-            Pit pit = board.getNextPit(++pitId);
+            Pit pit = board.advanceToNextPit(++pitId);
             if (pit.isDistributablePit(game.getActivePlayer())) {
                 pit.increasePitStone();
             }
@@ -46,7 +46,7 @@ public class GameEngine {
             Board board = game.getBoard();
             board.collectStonesToHouse();
             board.resetBoardPitsStone();
-            game.decideWinner();
+            game.determineWinner();
             game.finish();
         }
     }

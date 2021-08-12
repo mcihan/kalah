@@ -39,16 +39,8 @@ public class GameController {
     public ResponseEntity<MoveGameResponse> move(@PathVariable final String gameId, @PathVariable final Integer pitId) {
         RequestValidator.validateParameters(gameId, pitId);
         Game game = gameService.move(gameId, pitId);
-        printGameInfo(game);
         MoveGameResponse response = new MoveGameResponse(game, port);
         return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
-
-    private void printGameInfo(Game game) {
-        System.out.println("game.getActivePlayer() = " + game.getActivePlayer());
-        System.out.println("game.getWinner() = " + game.getWinner());
-        System.out.println("game.getGameStatus() = " + game.getGameStatus());
-        System.err.println("-----------------------------------------------");
     }
 
 }

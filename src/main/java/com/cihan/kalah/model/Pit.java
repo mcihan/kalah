@@ -66,4 +66,9 @@ public class Pit {
         setStoneCount(0);
     }
 
+    private enum PitType {
+        BOARD,
+        HOUSE
+    }
+
 }

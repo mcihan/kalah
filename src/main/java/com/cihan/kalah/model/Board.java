@@ -46,7 +46,7 @@ public class Board {
 
     Pit getHousePit(PlayerId playerId) {
         return pits.values().stream()
-                .filter(Pit::isBoardPit)
+                .filter(Pit::isHousePit)
                 .filter(p -> p.getPlayerId() == playerId)
                 .findFirst().orElseThrow(() -> new GameException(ExceptionConstant.PIT_NOT_FOUND));
     }

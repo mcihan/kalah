@@ -39,7 +39,7 @@ class GameRepositoryImplTest {
     void shouldValidateGameNotFound() {
         String gameId = UUID.randomUUID().toString();
         GameException exception = assertThrows(GameException.class, () -> gameRepository.findById(gameId));
-        assertEquals(exception.getMessage(), ExceptionConstant.GAME_NOT_FOUND);
+        assertEquals(ExceptionConstant.GAME_NOT_FOUND, exception.getMessage());
     }
 
 }

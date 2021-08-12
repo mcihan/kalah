@@ -30,7 +30,6 @@ Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐏𝐈𝐓_𝐂𝐎𝐔𝐍𝐓 as a N for
  
  - **Java 11** or latest 
 
-<br/>
 
 ### Build & Run
 
@@ -38,14 +37,9 @@ Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐏𝐈𝐓_𝐂𝐎𝐔𝐍𝐓 as a N for
 |--|--|--|
 |**Build**|*./mvnw clean install*| *./mvnw.bat clean install*  |
 |**Run**| *./mvnw  spring-boot:run*| *./mvnw.bat spring-boot:run*  | 
- 
-<br/>
-
-
 
 
 ## **Technology Stack**
-<br/>
 
 | | ㅤName | ㅤVersion|
 |--|--|--|
@@ -56,7 +50,6 @@ Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐏𝐈𝐓_𝐂𝐎𝐔𝐍𝐓 as a N for
 |Utility | ㅤ**Lombok**   <br/> ㅤ**Apache Commons Lang3** | ㅤ1.18.20  <br/> ㅤ3.11 |
  
 
-<br/>
   
 
 
@@ -72,7 +65,7 @@ http://localhost:8080/swagger-ui.html
 
 ![image info](./screenshots/swagger.png)
 
-<br/>
+ 
 
 ### **How to use API**
 

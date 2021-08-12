@@ -7,16 +7,13 @@ This is a SpringBoot + REST API application that runs the game of 6-stone Kalah.
 For the general rules of the game please refer to Wikipedia: https://en.wikipedia.org/wiki/Kalah.  
 
 <br/>
-The default implementation of this app for 6 stone and 6 pits.    
+The default implementation of this app for 6 stone and 6 pits.   
 
-**You can customize the application by changing default stone or pit count. So you can play many different implementation of KALAH**  
+☝ **You can customize the application by changing default stone or pit count. So you can play many different implementation of KALAH**  
 ```
-Change DEFAULT_STONE_COUNT for stone count.     
-Change DEFAULT_PIT_COUNT for pit count. 
-
+Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐒𝐓𝐎𝐍𝐄_𝐂𝐎𝐔𝐍𝐓 as a N for play N-stone Kalah.     
+Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐏𝐈𝐓_𝐂𝐎𝐔𝐍𝐓 as a N for play N-pits Kalah. 
 ```
-
-
 
 ## About the game
 * Each of the two players has six pits in front of him/her. 
@@ -28,9 +25,7 @@ Change DEFAULT_PIT_COUNT for pit count.
 <br/> 
 
 ## **Installation**
- 
-<br/> 
-  
+   
 ### Minimum Specification
  
  - **Java 11** or latest 
@@ -45,9 +40,6 @@ Change DEFAULT_PIT_COUNT for pit count.
 |**Run**| *./mvnw  spring-boot:run*| *./mvnw.bat spring-boot:run*  | 
  
 <br/>
-
-<br/>
-
 
 
 

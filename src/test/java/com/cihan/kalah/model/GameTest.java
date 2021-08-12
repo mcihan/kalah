@@ -10,9 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class GameTest {
 
+    final private Integer pitId = 1;
+
     @Test
     void shouldTurnToOtherPlayer() {
-        Integer pitId = 1;
         Game game = MockDataGenerator.generateGame();
         game.initActivePlayerByPitId(pitId);
         Player player = game.getActivePlayer();
@@ -25,7 +26,6 @@ class GameTest {
 
     @Test
     void shouldInitActivePlayerByPitId() {
-        Integer pitId = 1;
         Game game = MockDataGenerator.generateGame();
 
         game.initActivePlayerByPitId(pitId);
@@ -63,6 +63,29 @@ class GameTest {
         assertNull(game.getWinner());
     }
 
+    @Test
+    void shouldMoveOn() {
+        Game game = MockDataGenerator.generateGame();
+
+        Pit currentPit = game.moveOn(pitId);
+
+        assertEquals(currentPit.getId(), pitId);
+    }
+
+    @Test
+    void shouldCollectStones() {
+        int expectedHouseStoneCount = GameConstant.TOTAL_STONE_COUNT / 2;
+        Game game = MockDataGenerator.generateGame();
+
+        game.collectStones();
+
+        int housePitStoneCount = game.getBoard().getHousePit(Player.A).getStoneCount();
+        assertEquals(expectedHouseStoneCount, housePitStoneCount);
+
+        int boardPitStoneCount = game.getBoard().getPitById(pitId).getStoneCount();
+        assertEquals(0, boardPitStoneCount);
+
+    }
 
     @Test
     void shouldFinish() {
@@ -75,7 +98,6 @@ class GameTest {
 
     @Test
     void shouldCaptureOppositePitStone() {
-        Integer pitId = 1;
         Game game = MockDataGenerator.generateGame();
         game.initActivePlayerByPitId(pitId);
         int pitStone = game.getBoard().getPitById(pitId).getStoneCount();

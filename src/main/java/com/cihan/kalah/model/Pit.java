@@ -1,10 +1,8 @@
 package com.cihan.kalah.model;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class Pit {
     private Integer id;
     private int stoneCount;
@@ -31,10 +29,10 @@ public class Pit {
     }
 
     public boolean isDistributablePit(Player player) {
-        return !isOppositeHouse(player);
+        return !isOpponentsHouse(player);
     }
 
-    private boolean isOppositeHouse(Player player) {
+    private boolean isOpponentsHouse(Player player) {
         return isHousePit() && !isPitOwner(player);
     }
 
@@ -59,11 +57,11 @@ public class Pit {
     }
 
     void addStoneToPit(int stone) {
-        setStoneCount(getStoneCount() + stone);
+        this.stoneCount = this.stoneCount + stone;
     }
 
     public void resetPitStone() {
-        setStoneCount(0);
+        this.stoneCount = 0;
     }
 
     private enum PitType {

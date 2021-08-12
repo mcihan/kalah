@@ -50,7 +50,7 @@ class GameServiceValidatorTest {
     void shouldValidateEmptyPit() {
         Integer pitId = 1;
         Game game = MockDataGenerator.generateGame();
-        game.getBoard().getPitById(pitId).setStoneCount(0);
+        game.getBoard().getPitById(pitId).resetPitStone();
 
         GameException exception = assertThrows(GameException.class,
                 () -> GameServiceValidator.validateMove(game, pitId));

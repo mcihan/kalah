@@ -15,4 +15,5 @@ public class GameConstant {
 
     final static int DEFAULT_STONE_COUNT = 4;
     final static int HOUSE_STONE_COUNT = 0;
+    public final static int TOTAL_STONE_COUNT = DEFAULT_STONE_COUNT * (PIT_MEDIAN_ID - 1) * 2;
 }

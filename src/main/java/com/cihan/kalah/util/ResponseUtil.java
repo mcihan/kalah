@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ResponseUtil {
     public static Map<Integer, Integer> generateMoveGameStatus(Game game) {
         return game.getBoard().getPits().entrySet().stream()
-                    .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getStoneCount()));
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getStoneCount()));
     }
 
     public static String generateGameUrl(Game game, int port) {

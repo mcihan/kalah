@@ -5,7 +5,7 @@ import com.cihan.kalah.exception.GameException;
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.model.GameStatus;
 import com.cihan.kalah.model.Pit;
-import com.cihan.kalah.model.PlayerId;
+import com.cihan.kalah.model.Player;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +26,7 @@ class GameServiceValidator {
 
     private static void validateTurn(Game game, Integer pitId) {
         Pit pit = game.getBoard().getPitById(pitId);
-        PlayerId activePlayer = game.getActivePlayer();
+        Player activePlayer = game.getActivePlayer();
         if (activePlayer != null && !pit.isPitOwner(activePlayer)) {
             throw new GameException(ExceptionConstant.IT_IS_OPPONENT_TURN);
         }

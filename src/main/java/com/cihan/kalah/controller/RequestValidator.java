@@ -19,7 +19,7 @@ class RequestValidator {
         }
 
         if (pitId == GameConstant.HOUSE_A_PIT_ID || pitId == GameConstant.HOUSE_B_PIT_ID) {
-            throw new GameException(ExceptionConstant.NOT_START_FROM_HOUSE);
+            throw new GameException(ExceptionConstant.CANT_MOVE_HOUSE);
         }
 
         if (pitId < GameConstant.PIT_START_ID || pitId > GameConstant.PIT_END_ID) {

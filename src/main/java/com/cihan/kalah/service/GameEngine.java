@@ -1,9 +1,8 @@
 package com.cihan.kalah.service;
 
-import com.cihan.kalah.model.Board;
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.model.Pit;
-import com.cihan.kalah.model.PlayerId;
+import com.cihan.kalah.model.Player;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,14 +22,13 @@ public class GameEngine {
     }
 
     private void distributeStones(Game game, Integer pitId) {
-        Board board = game.getBoard();
-        Pit currentPit = board.getPitById(pitId);
-        int currentPitStone = currentPit.getStoneCount();
-        currentPit.resetPitStone();
+        Pit pit = game.getBoard().getPitById(pitId);
+        int currentPitStone = pit.getStoneCount();
+        pit.resetPitStone();
         while (currentPitStone-- > 0) {
-            Pit pit = board.advanceToNextPit(++pitId);
-            if (pit.isDistributablePit(game.getActivePlayer())) {
-                pit.increasePitStone();
+            Pit currentPit = game.moveOn(++pitId);
+            if (currentPit.isDistributablePit(game.getActivePlayer())) {
+                currentPit.increasePitStone();
             }
         }
     }
@@ -43,9 +41,7 @@ public class GameEngine {
 
     private void completeGame(Game game) {
         if (game.isOver()) {
-            Board board = game.getBoard();
-            board.collectStonesToHouse();
-            board.resetBoardPitsStone();
+            game.collectStones();
             game.determineWinner();
             game.finish();
         }
@@ -64,7 +60,7 @@ public class GameEngine {
     }
 
     private boolean shouldCaptureOppositePitStone(Game game, Pit pit) {
-        PlayerId activePlayer = game.getActivePlayer();
+        Player activePlayer = game.getActivePlayer();
         return pit.isPitOwner(activePlayer) && pit.isBoardPit() && pit.getStoneCount() == 1;
     }
 

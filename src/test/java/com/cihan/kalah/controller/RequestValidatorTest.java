@@ -38,7 +38,7 @@ class RequestValidatorTest {
                 .forEach(housePitId -> {
                     GameException exception = assertThrows(GameException.class,
                             () -> RequestValidator.validateParameters(gameId, housePitId));
-                    assertEquals(ExceptionConstant.NOT_START_FROM_HOUSE, exception.getMessage());
+                    assertEquals(ExceptionConstant.CANT_MOVE_HOUSE, exception.getMessage());
                 });
     }
 

@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(MockitoExtension.class)
 class BoardTest {
 
-    private List<PlayerId> players;
+    private List<Player> players;
 
     @BeforeEach
     void init() {
-        players = List.of(PlayerId.values());
+        players = List.of(Player.values());
     }
 
     @Test
@@ -97,9 +97,9 @@ class BoardTest {
 
     @Test
     void shouldCompleted() {
-        players.forEach(playerId -> {
+        players.forEach(player -> {
             Board board = new Board();
-            resetPlayersBoardPits(playerId, board);
+            resetPlayersBoardPits(player, board);
             assertTrue(board.isCompleted());
         });
     }
@@ -107,14 +107,14 @@ class BoardTest {
     @Test
     void shouldGetHousePit() {
         Board board = new Board();
-        Pit pit = board.getHousePit(PlayerId.A);
+        Pit pit = board.getHousePit(Player.A);
         assertTrue(pit.isHousePit());
     }
 
     @Test
     void shouldCaptureOppositePitStone() {
         Integer pitId = 6;
-        PlayerId activePlayer = PlayerId.A;
+        Player activePlayer = Player.A;
         Board board = new Board();
         int stoneOfHouse = board.getHousePit(activePlayer).getStoneCount();
 
@@ -125,7 +125,7 @@ class BoardTest {
     }
 
 
-    private void resetPlayersBoardPits(PlayerId playerId, Board board) {
-        board.getPits().values().stream().filter(p -> p.getPlayerId() == playerId).forEach(Pit::resetPitStone);
+    private void resetPlayersBoardPits(Player player, Board board) {
+        board.getPits().values().stream().filter(p -> p.getPlayer() == player).forEach(Pit::resetPitStone);
     }
 }

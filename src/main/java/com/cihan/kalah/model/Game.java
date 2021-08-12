@@ -3,47 +3,47 @@ package com.cihan.kalah.model;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.UUID;
 
 @Getter
 @Slf4j
 public class Game {
     private String id;
-    private List<Player> players;
-    private PlayerId winner;
-    private PlayerId activePlayer;
+    private Player winner;
+    private Player activePlayer;
     private GameStatus gameStatus;
     private Board board;
 
     public Game() {
-        this.id = "1234"; //UUID.randomUUID().toString();
-        this.players = Stream.of(new Player("Player A", PlayerId.A), new Player("Player B", PlayerId.B)).collect(Collectors.toList());
+        this.id = UUID.randomUUID().toString();
         this.gameStatus = GameStatus.START;
         this.board = new Board();
     }
 
     public void turnToOtherPlayer() {
-        this.activePlayer = this.activePlayer == PlayerId.A ? PlayerId.B : PlayerId.A;
+        this.activePlayer = this.activePlayer == Player.A ? Player.B : Player.A;
     }
 
     public void initActivePlayerByPitId(Integer pitId) {
-        this.activePlayer = this.board.getPitById(pitId).getPlayerId();
+        this.activePlayer = this.board.getPitById(pitId).getPlayer();
     }
 
-    public boolean isOver() {
-        return this.board.isCompleted();
+    public Pit moveOn(Integer integer) {
+        return this.board.advanceToNextPit(integer);
     }
 
     public void determineWinner() {
-        int houseAStones = this.board.getHousePit(PlayerId.A).getStoneCount();
-        int houseBStones = this.board.getHousePit(PlayerId.B).getStoneCount();
+        int houseAStones = this.board.getHousePit(Player.A).getStoneCount();
+        int houseBStones = this.board.getHousePit(Player.B).getStoneCount();
         if (houseAStones == houseBStones) {
             log.info("Game ended in a draw!");
             return;
         }
-        this.winner = houseAStones > houseBStones ? PlayerId.A : PlayerId.B;
+        this.winner = houseAStones > houseBStones ? Player.A : Player.B;
+    }
+
+    public boolean isOver() {
+        return this.board.isCompleted();
     }
 
     public void finish() {
@@ -52,5 +52,10 @@ public class Game {
 
     public void captureOppositePitStone(Integer pitId) {
         this.board.captureOppositePitStone(this.activePlayer, pitId);
+    }
+
+    public void collectStones() {
+        board.collectStonesToHouse();
+        board.resetBoardPitsStone();
     }
 }

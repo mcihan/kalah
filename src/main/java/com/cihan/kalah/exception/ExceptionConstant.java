@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class ExceptionConstant {
     public static final String EMPTY_GAME_ID = "gameId can not be empty!";
     public static final String EMPTY_PIT_ID = "pitId can not be empty!";
-    public static final String NOT_START_FROM_HOUSE = "You can not start from house";
     public static final String INVALID_PIT_ID = String.format("pitId should be between %d and %d", GameConstant.PIT_START_ID, GameConstant.PIT_END_ID);
 
     public static final String CANT_PLAY_FINISHED_GAME = "Game Finished!, You can not play finished game!";

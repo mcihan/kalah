@@ -5,7 +5,6 @@ import com.cihan.kalah.exception.GameException;
 import com.cihan.kalah.generator.MockDataGenerator;
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.model.GameConstant;
-import com.cihan.kalah.model.PlayerId;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

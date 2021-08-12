@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -17,11 +15,11 @@ class GameTest {
         Integer pitId = 1;
         Game game = MockDataGenerator.generateGame();
         game.initActivePlayerByPitId(pitId);
-        PlayerId player = game.getActivePlayer();
+        Player player = game.getActivePlayer();
 
         game.turnToOtherPlayer();
 
-        PlayerId turnedPlayer = game.getActivePlayer();
+        Player turnedPlayer = game.getActivePlayer();
         assertNotEquals(player, turnedPlayer);
     }
 
@@ -51,11 +49,11 @@ class GameTest {
     @Test
     void shouldDetermineWinner() {
         Game game = MockDataGenerator.generateGame();
-        game.getBoard().getHousePit(PlayerId.A).increasePitStone();
+        game.getBoard().getHousePit(Player.A).increasePitStone();
 
         game.determineWinner();
 
-        assertEquals(PlayerId.A, game.getWinner());
+        assertEquals(Player.A, game.getWinner());
     }
 
     @Test
@@ -82,21 +80,13 @@ class GameTest {
         game.initActivePlayerByPitId(pitId);
         int pitStone = game.getBoard().getPitById(pitId).getStoneCount();
         int oppositePitStone = game.getBoard().getOppositePit(pitId).getStoneCount();
-        int houseStone = game.getBoard().getHousePit(PlayerId.A).getStoneCount();
+        int houseStone = game.getBoard().getHousePit(Player.A).getStoneCount();
         int sumOfStones = pitStone + oppositePitStone + houseStone;
 
         game.captureOppositePitStone(pitId);
 
-        int houseStoneAfterCapture = game.getBoard().getHousePit(PlayerId.A).getStoneCount();
+        int houseStoneAfterCapture = game.getBoard().getHousePit(Player.A).getStoneCount();
         assertEquals(sumOfStones, houseStoneAfterCapture);
     }
 
-    @Test
-    void shouldGetPlayer() {
-        Game game = MockDataGenerator.generateGame();
-
-        List<Player> players = game.getPlayers();
-
-        assertEquals(2, players.size());
-    }
 }

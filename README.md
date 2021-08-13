@@ -114,6 +114,12 @@ curl --header "Content-Type: application/json" \
 
 ![image info](./doc/code-metrics2.png)  
 
+ <br/>
+ 
+ Game:
+
+![image info](./doc/game.gif)  
+
 
  ----------  
  ㅤㅤㅤ

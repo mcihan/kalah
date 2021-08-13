@@ -1,7 +1,7 @@
 addons:
   sonarcloud:
     organization: mcihan
-    token: ${{ secrets.SONAR_TOKEN }}
+    token: cc00f7ea9a3c5f320fa2a9156399a04272e6b644
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=mcihan_kalah

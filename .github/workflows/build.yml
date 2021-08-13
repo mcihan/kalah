@@ -31,20 +31,18 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Set up secret file
         env:
-          DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
-          DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo iste_burada
-          echo $DEBUG_PASSWORD
-          echo $DEBUG_SECRET_KEY
-          echo $DEBUG_PASSWORD >> secrets.txt
-          echo $DEBUG_SECRET_KEY >> secrets.txt
+          echo $SONAR_TOKEN >> secrets.txt
+          echo $GITHUB_TOKEN >> secrets.txt
           echo HAZIR
           echo "$(<secrets.txt)"
           echo satir1
-          echo "$(< DEBUG_SECRET_KEY)"
+          echo "$(< GITHUB_TOKEN)"
           echo satir2
-          echo "$(< ${{ secrets.DEBUG_SECRET_KEY }})"
+           < ${{ secrets.SONAR_TOKEN }})
           echo satir3
           less secrets.txt
           echo satir4

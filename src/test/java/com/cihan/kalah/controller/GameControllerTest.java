@@ -41,7 +41,7 @@ class GameControllerTest {
         Game game = MockDataGenerator.generateGame();
 
         Mockito.doReturn(game).when(gameService).create();
-        mockMvc.perform(MockMvcRequestBuilders.get("/doctors/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/kalah/1"))
                 .andExpect(MockMvcResultMatchers.status().is(HttpStatus.NOT_FOUND.value()));
 
         mockMvc.perform(MockMvcRequestBuilders.post("/games"))

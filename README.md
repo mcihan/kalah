@@ -1,7 +1,10 @@
 
 # Kalah Game
 
+[Github Repository](https://github.com/mcihan/kalah)
+
 **@author:** *M. Cihan DOGAN*
+
 
 This is a SpringBoot + REST API application that runs the game of 6-stone Kalah.   
 For the general rules of the game please refer to Wikipedia: https://en.wikipedia.org/wiki/Kalah.  

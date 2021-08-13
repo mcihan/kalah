@@ -1,0 +1,34 @@
+package com.cihan.kalah.controller;
+
+import com.cihan.kalah.model.Game;
+import com.cihan.kalah.service.GameService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/ui/games")
+@RequiredArgsConstructor
+@Validated
+public class UIKahalController {
+
+
+    private final GameService gameService;
+
+    @PostMapping
+    public ResponseEntity<Game> createForUI() {
+        Game game = gameService.create();
+        return ResponseEntity.status(HttpStatus.CREATED).body(game);
+    }
+
+    @PutMapping("/{gameId}/pits/{pitId}")
+    public ResponseEntity moveForUI(@PathVariable final String gameId,
+                                    @PathVariable final Integer pitId) {
+        RequestValidator.validateParameters(gameId, pitId);
+        Game game = gameService.move(gameId, pitId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(game);
+
+    }
+}

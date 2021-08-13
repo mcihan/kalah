@@ -1,13 +1,16 @@
-
 table {
-    border: 1px solid #ccc!important;
+    border: 1px solid #ccc !important;
+    background: #f1f1f1;
+    padding: 15px 0px 15px 0px;
 }
-
 
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.error-message {
+     color:red
 }
 
 
@@ -53,7 +56,7 @@ span.green {
     width: 1.6em;
 }
 
-span.blue {
+span.house {
     background: #5178D0;
     border-radius: 0.8em;
     -moz-border-radius: 0.8em;
@@ -68,8 +71,12 @@ span.blue {
     font-size: 100px;
 }
 
+span.kalah-text {
+    font-size: 140px;
+}
+
 span.pink {
-  /*background: #EF0BD8;*/
+    /*background: #EF0BD8;*/
     background: #ff0000;
     border-radius: 0.8em;
     -moz-border-radius: 0.8em;

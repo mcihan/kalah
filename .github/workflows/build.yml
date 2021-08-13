@@ -37,6 +37,18 @@ jobs:
           echo iste_burada
           echo $DEBUG_PASSWORD
           echo $DEBUG_SECRET_KEY
+          echo $DEBUG_PASSWORD >> secrets.txt
+          echo $DEBUG_SECRET_KEY >> secrets.txt
+          echo HAZIR
+          echo "$(<secrets.txt)"
+          echo satir1
+          echo "$(< DEBUG_SECRET_KEY)"
+          echo satir2
+          echo "$(< ${{ secrets.DEBUG_SECRET_KEY }})"
+          echo satir3
+          less secrets.txt
+          echo satir4
+
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any

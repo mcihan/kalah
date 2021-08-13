@@ -92,10 +92,27 @@ curl --header "Content-Type: application/json" \
 
 # UI Implementation
  
-![image info](./screenshots/kalah-ui.png)
+![image info](./doc/kalah-ui.png)
 
 
+  
+<br/>
+
+## Code Metrics
+
+![image info](./doc/code-metrics.png)  
+
+<br/>
+
+|Metric| Cover persentence|
+|-|-|
+|Hotspots Reviewed | 100%|
+|Test Coverage | 96.7%|
  
+
+ <br/>
+
+![image info](./doc/code-metrics2.png)  
 
 
  ----------  

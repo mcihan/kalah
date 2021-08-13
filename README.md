@@ -48,6 +48,7 @@ Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐏𝐈𝐓_𝐂𝐎𝐔𝐍𝐓 as a N for
 |Test|  ㅤ**Spring Boot Test**  <br/>ㅤ├─ Mockito <br/> ㅤ├─ JUnit Jupiter API| ㅤ2.5.3 <br/> ㅤ5.7.2 <br/> ㅤ3.9.0|
 |Coverage| ㅤ**JaCoCo** | ㅤ0.8.6 |
 |Utility | ㅤ**Lombok**   <br/> ㅤ**Apache Commons Lang3** | ㅤ1.18.20  <br/> ㅤ3.11 |
+|UI | ㅤ**Angular**  | ㅤ1.8.2|
  
 
   
@@ -92,7 +93,7 @@ curl --header "Content-Type: application/json" \
 
 # UI Implementation
  
-![image info](./doc/kalah-ui.png)
+![image info](./doc/kalah.gif)  
 
 
   
@@ -118,7 +119,7 @@ curl --header "Content-Type: application/json" \
  
  Game:
 
-![image info](./doc/game.gif)  
+
 
 
  ----------  

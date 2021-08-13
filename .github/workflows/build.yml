@@ -29,6 +29,14 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+      - name: Set up secret file
+        env:
+          DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
+          DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+        run: |
+          echo iste_burada
+          echo $DEBUG_PASSWORD
+          echo $DEBUG_SECRET_KEY
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any

@@ -9,10 +9,49 @@ table {
     justify-content: center;
     align-items: center;
 }
+
 .error-message {
-     color:red
+    color: red
 }
 
+.player > span {
+    color: mediumvioletred;
+    padding-left: 10px;
+}
+
+.game-info {
+    text-align: left;
+    width: 32%;
+    color: white;
+    border: 1px solid #ccc !important;
+    padding: 10px;
+    margin: 5px
+}
+
+.game-info > span {
+    padding: 100px 10px 10px;
+    margin-top: 15px;
+    color: #130e5a !important;
+}
+
+.game-info > b {
+    font-size: 20px;
+    color: #942424 !important;;
+}
+
+.game-over {
+    font-size: 45px;
+    color: red !important;;
+}
+
+
+.winner {
+
+}
+
+.player.span {
+    color: mediumvioletred
+}
 
 span.red {
     background: red;

@@ -13,7 +13,7 @@ angular.module('KalahGameApplication', [])
         $scope.gameId = undefined;
         $scope.gameUrl = undefined;
         $scope.gameStatus = undefined;
-        $scope.activePlayer = undefined;
+        $scope.activePlayer = "Start with one Player";
         $scope.errorMessage = undefined;
         $scope.gameStatus = "START";
 
@@ -67,6 +67,7 @@ angular.module('KalahGameApplication', [])
                     $scope.winner = "Game ended in a draw!";
                 }
                 $scope.gameStatus = "FINISH";
+                $scope.isGameOver = true;
             }
         };
 
@@ -90,10 +91,9 @@ angular.module('KalahGameApplication', [])
     });
 
 const initStatus = function () {
-    const status = [];
+    let status = {};
     for (let i = PIT_START_ID; i <= PIT_END_ID; i++) {
-        const item = {i, DEFAULT_PIT_COUNT};
-        status.push(item)
+        status[i] = (i == HOUSE_A_PIT_ID | i == HOUSE_B_PIT_ID) ? 0 : DEFAULT_STONE_COUNT;
     }
     return status;
 };
@@ -101,6 +101,6 @@ const initStatus = function () {
 const initialMoveResponse = {
     id: "",
     url: "",
-    // status: {"1": "6", "2": "6", "3": "6", "4": "6", "5": "6", "6": "6", "7": "0", "8": "6", "9": "6", "10": "6", "11": "6", "12": "6", "13": "6", "14": "0"}
-    status: {"1": "4", "2": "4", "3": "4", "4": "4", "5": "4", "6": "4", "7": "0", "8": "4", "9": "4", "10": "4", "11": "4", "12": "4", "13": "4", "14": "0"}
+    status: initStatus()
 };
+

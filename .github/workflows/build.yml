@@ -23,30 +23,12 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-      - name: Cache Maven packages
+      - name: Cache Maven packagesµ
         uses: actions/cache@v1
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Set up secret file
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo iste_burada
-          echo $SONAR_TOKEN >> secrets.txt
-          echo $GITHUB_TOKEN >> secrets.txt
-          echo HAZIR
-          echo "$(<secrets.txt)"
-          echo satir1
-          echo "$(< GITHUB_TOKEN)"
-          echo satir2
-           < ${{ secrets.SONAR_TOKEN }})
-          echo satir3
-          less secrets.txt
-          echo satir4
-
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any

@@ -1,3 +1,5 @@
+# Contents
+
 - [Kalah Game](#kalah-game)
   - [About the game](#about-the-game)
   - [Installation](#installation)

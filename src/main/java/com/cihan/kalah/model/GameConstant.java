@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GameConstant {
-    static final int DEFAULT_STONE_COUNT = 4;
-    private static final int DEFAULT_PIT_COUNT = 4;
+    static final int DEFAULT_STONE_COUNT = 6;
+    private static final int DEFAULT_PIT_COUNT = 6;
 
     public static final int PIT_START_ID = 1;
     public static final int PIT_END_ID = DEFAULT_PIT_COUNT * 2 + 2;

@@ -41,19 +41,20 @@ Change "DEFAULT_PIT_COUNT" as a N for play N-pits Kalah.
 
 ### Build & Run
 
-| | Linux & OSX |Windows|
-|--|--|--|
-|**Build**|*./mvnw clean install*| *./mvnw.bat clean install*  |
-|**Run**| *./mvnw  spring-boot:run*| *./mvnw.bat spring-boot:run*  | 
+|    | Linux & OSX  |  Windows |
+|----------|-------------|------|
+| **Build** | *./mvnw clean install* | *./mvnw.bat clean install*  |
+| **Run**| *./mvnw  spring-boot:run*| *./mvnw.bat spring-boot:run*  | 
 
+ 
 
 ## **Technology Stack**
 
-| | ㅤName | ㅤVersion|
-|--|--|--|
+|    | Name  |  ㅤVersion |
+|----------|-------------|------|
 |Software Language| ㅤ**Java SE** | ㅤ11 |
 |Framework| ㅤ**Spring Boot**| ㅤ2.5.3 |
-|Test|  ㅤ**Spring Boot Test**  <br/>ㅤ├─ Mockito <br/> ㅤ├─ JUnit Jupiter API| ㅤ2.5.3 <br/> ㅤ5.7.2 <br/> ㅤ3.9.0|
+|Test|  ㅤ**Spring Boot Test**  <br/>ㅤ─ Mockito <br/> ㅤ─ JUnit Jupiter API| ㅤ2.5.3 <br/> ㅤ5.7.2 <br/> ㅤ3.9.0|
 |Coverage| ㅤ**JaCoCo** | ㅤ0.8.6 |
 |Utility | ㅤ**Lombok**   <br/> ㅤ**Apache Commons Lang3** | ㅤ1.18.20  <br/> ㅤ3.11 |
 |UI | ㅤ**Angular**  | ㅤ1.8.2|

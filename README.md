@@ -20,7 +20,7 @@ The default implementation of this app for 6 stone and 6 pits.
 💡 **You can customize the application by changing default stone or pit count. So you can play many different implementation of KALAH**  
 ```js
 Change "DEFAULT_STONE_COUNT" as a N for play N-stone Kalah.     
-Change "DEFAULT_PIT_COUND" as a N for play N-pits Kalah. 
+Change "DEFAULT_PIT_COUNT" as a N for play N-pits Kalah. 
 ```
 
 ## About the game
@@ -115,12 +115,14 @@ Please browse http://localhost:8080 to play kalah via UI Implementation.
 
 <br/>
 
-## Custom NxN Kalah (4 Stone - 4 Pit) 
+## Custom NxN Kalah (4 Stone - 4 Pit)   
+
+
+You can play many different implementation of KALAH by changing **DEFAULT_STONE_COUNT** and  **DEFAULT_PIT_COUNT**.  
+
+
 ![image info](./doc/4-4.png)  
 
-
-
- 
 
   
 <br/>

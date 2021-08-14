@@ -30,21 +30,14 @@ public class GameEngine {
         int currentPitStone = pit.getStoneCount();
         pit.resetPitStone();
         while (currentPitStone > 0) {
-            pitId = getNextPitId(pitId);
             Pit currentPit = game.moveOn(pitId);
+            pitId = currentPit.getId();
             if (currentPit.isDistributablePit(game.getActivePlayer())) {
                 currentPit.increasePitStone();
                 currentPitStone--;
             }
         }
         log.info("Stones are distributed for the Player : {}", game.getActivePlayer());
-    }
-
-    private Integer getNextPitId(Integer pitId) {
-        if (pitId != GameConstant.PIT_END_ID) {
-            return pitId % GameConstant.PIT_END_ID + 1;
-        }
-        return 1;
     }
 
     private void applyLastPitRules(Game game) {

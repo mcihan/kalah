@@ -66,10 +66,10 @@ class GameTest {
     @Test
     void shouldMoveOn() {
         Game game = MockDataGenerator.generateGame();
-
+        Integer expectedPitId = pitId + 1;
         Pit currentPit = game.moveOn(pitId);
 
-        assertEquals(currentPit.getId(), pitId);
+        assertEquals(expectedPitId, currentPit.getId());
     }
 
     @Test

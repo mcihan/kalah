@@ -37,8 +37,16 @@ public class Board {
     }
 
     public Pit advanceToNextPit(Integer pitId) {
+        pitId = getNextPitId(pitId);
         latestPit = pits.get(pitId);
         return latestPit;
+    }
+
+    private Integer getNextPitId(Integer pitId) {
+        if (pitId != GameConstant.PIT_END_ID) {
+            return pitId % GameConstant.PIT_END_ID + 1;
+        }
+        return 1;
     }
 
     void captureOppositePitStone(Player activePlayer, Integer pitId) {

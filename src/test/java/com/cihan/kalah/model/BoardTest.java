@@ -22,18 +22,18 @@ class BoardTest {
 
     @Test
     void shouldAdvanceToNextPit() {
-        Integer pitId = 1;
+        Integer pitId = GameConstant.PIT_START_ID;
         Board board = new Board();
-
+        Integer expectedPitId = pitId + 1;
         Pit nextPit = board.advanceToNextPit(pitId);
 
-        assertEquals(nextPit.getId(), pitId);
+        assertEquals(expectedPitId, nextPit.getId());
     }
 
     @Test
     void shouldAdvanceToNextPitWhenPitIdExceed() {
         Integer pitId = 17;
-        Integer expectedPitId = pitId % GameConstant.PIT_END_ID;
+        Integer expectedPitId = pitId % GameConstant.PIT_END_ID + 1;
         Board board = new Board();
 
         Pit nextPit = board.advanceToNextPit(pitId);
@@ -44,7 +44,7 @@ class BoardTest {
     @Test
     void shouldAdvanceToNextPitWhenEndPit() {
         Integer pitId = GameConstant.PIT_END_ID;
-        Integer expectedPitId = pitId % GameConstant.PIT_END_ID +1;
+        Integer expectedPitId = GameConstant.PIT_START_ID;
         Board board = new Board();
 
         Pit nextPit = board.advanceToNextPit(pitId);
@@ -54,12 +54,13 @@ class BoardTest {
 
     @Test
     void shouldSetLatestPitWhenAdvanceToNextPit() {
-        Integer pitId = 1;
+        Integer pitId = GameConstant.PIT_START_ID;
+        Integer expectedPitId = pitId + 1;
         Board board = new Board();
 
         board.advanceToNextPit(pitId);
 
-        assertEquals(pitId, board.getLatestPit().getId());
+        assertEquals(expectedPitId, board.getLatestPit().getId());
     }
 
     @Test

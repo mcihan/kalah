@@ -60,8 +60,7 @@ angular.module('KalahGameApplication', [])
 
         const determineWinner = function () {
             const collectedStone = $scope.houseAStone + $scope.houseBStone;
-            const totalStone = TOTAL_STONE_COUNT;
-            if (collectedStone == totalStone) {
+            if (collectedStone === TOTAL_STONE_COUNT) {
                 if ($scope.houseAStone > $scope.houseBStone) {
                     $scope.winner = "Player A";
                 } else if ($scope.houseBStone > $scope.houseAStone) {
@@ -82,19 +81,6 @@ angular.module('KalahGameApplication', [])
             }
         };
 
-
-        const determineActivePlayer2 = function (pit) {
-            if ($scope.activePlayer && isLastPitRule(pit)) {
-                $scope.activePlayer = $scope.activePlayer == "Player A" ? "Player B" : "Player A"
-            } else {
-                if (isLastPitRule(pit)) {
-                    $scope.activePlayer = getPlayerOfPit(pit);
-                } else {
-                    $scope.activePlayer = getOpponentPlayerOfPit(pit);
-                }
-            }
-        };
-
         const getPlayerOfPit = function (pit) {
             return pit.id < PIT_MEDIAN_ID ? "Player A" : "Player B";
         };
@@ -103,29 +89,19 @@ angular.module('KalahGameApplication', [])
             return pit.id < PIT_MEDIAN_ID ? "Player B" : "Player A";
         };
 
-
-        const isLastPitRule = function (pit) {
-            if (pit.id < PIT_MEDIAN_ID) {
-                return pit.stone = pit.id + HOUSE_A_PIT_ID;
-            } else if (pit.id !== HOUSE_A_PIT_ID, pit.id !== HOUSE_B_PIT_ID) {
-                return pit.stone = pit.id + HOUSE_B_PIT_ID;
-            }
-        };
-
         const isLastPitInHouse = function (pit) {
             if (pit.id < PIT_MEDIAN_ID) {
-                return pit.stone == HOUSE_A_PIT_ID - pit.id;
+                return pit.stone === HOUSE_A_PIT_ID - pit.id;
             } else {
-                return pit.stone == HOUSE_B_PIT_ID - pit.id;
+                return pit.stone === HOUSE_B_PIT_ID - pit.id;
             }
         };
     });
-//if (pit.id !== HOUSE_A_PIT_ID || pit.id !== HOUSE_B_PIT_ID)
 
 const initStatus = function () {
     let status = {};
     for (let i = PIT_START_ID; i <= PIT_END_ID; i++) {
-        status[i] = (i == HOUSE_A_PIT_ID | i == HOUSE_B_PIT_ID) ? 0 : DEFAULT_STONE_COUNT;
+        status[i] = (i === HOUSE_A_PIT_ID || i === HOUSE_B_PIT_ID) ? 0 : DEFAULT_STONE_COUNT;
     }
     return status;
 };

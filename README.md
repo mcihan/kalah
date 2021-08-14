@@ -102,6 +102,13 @@ curl --header "Content-Type: application/json" \
 # UI Implementation  
 
 Please browse http://localhost:8080 to play kalah via UI Implementation.  
+ 
+This UI implementation uses the REST API to integrate into the kalah application;
+
+- When you open http://localhost:8080, game start automatically by calling http://localhost:8080/games endpoint  
+
+- When you move stone it call   http://localhost:8080/games/{gameId}/pits/{pitId} and update pits stones.
+
 
 <br/>
 
@@ -126,6 +133,11 @@ You can play many different implementation of KALAH by changing **DEFAULT_STONE_
 
   
 <br/>
+
+## Finished Game for (6-stone Kalah)
+
+![image info](./doc/finish.png)  
+
 
 ## Code Metrics
 

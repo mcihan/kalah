@@ -13,7 +13,7 @@ angular.module('KalahGameApplication', [])
         $scope.gameId = undefined;
         $scope.gameUrl = undefined;
         $scope.gameStatus = undefined;
-        $scope.activePlayer = "Start with one Player";
+        $scope.activePlayer = undefined;
         $scope.errorMessage = undefined;
         $scope.gameStatus = "START";
 
@@ -44,11 +44,11 @@ angular.module('KalahGameApplication', [])
 
             $scope.errorMessage = "";
 
-            console.log("BeforSend: " + JSON.stringify($scope.pitMap))
+            console.log("BeforSend: " + JSON.stringify($scope.pitMap));
             $http.put("/games/" + $scope.gameId + "/pits/" + pitId + "").then(function (response) {
                 gameController.setFields(response.data);
                 determineActivePlayer(pit);
-                determineWinner(response.data)
+                determineWinner(response.data);
                 console.log("AfterSend: " + JSON.stringify($scope.pitMap))
 
             }).catch(function (response) {
@@ -75,11 +75,32 @@ angular.module('KalahGameApplication', [])
         };
 
         const determineActivePlayer = function (pit) {
+            if (isLastPitInHouse(pit)) {
+                $scope.activePlayer = getPlayerOfPit(pit);
+            } else {
+                $scope.activePlayer = getOpponentPlayerOfPit(pit);
+            }
+        };
+
+
+        const determineActivePlayer2 = function (pit) {
             if ($scope.activePlayer && isLastPitRule(pit)) {
                 $scope.activePlayer = $scope.activePlayer == "Player A" ? "Player B" : "Player A"
             } else {
-                $scope.activePlayer = pit.id < PIT_MEDIAN_ID ? "Player A" : "Player B"
+                if (isLastPitRule(pit)) {
+                    $scope.activePlayer = getPlayerOfPit(pit);
+                } else {
+                    $scope.activePlayer = getOpponentPlayerOfPit(pit);
+                }
             }
+        };
+
+        const getPlayerOfPit = function (pit) {
+            return pit.id < PIT_MEDIAN_ID ? "Player A" : "Player B";
+        };
+
+        const getOpponentPlayerOfPit = function (pit) {
+            return pit.id < PIT_MEDIAN_ID ? "Player B" : "Player A";
         };
 
 
@@ -91,7 +112,15 @@ angular.module('KalahGameApplication', [])
             }
         };
 
+        const isLastPitInHouse = function (pit) {
+            if (pit.id < PIT_MEDIAN_ID) {
+                return pit.stone == HOUSE_A_PIT_ID - pit.id;
+            } else {
+                return pit.stone == HOUSE_B_PIT_ID - pit.id;
+            }
+        };
     });
+//if (pit.id !== HOUSE_A_PIT_ID || pit.id !== HOUSE_B_PIT_ID)
 
 const initStatus = function () {
     let status = {};

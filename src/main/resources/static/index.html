@@ -9,17 +9,18 @@
 <body>
 <div ng-controller="GameController as gameController">
 
-   <center> <div class="game-info">
-        <b>Game status: </b> <span>{{ gameStatus}}</span> <br/>
-        <b>Game Id : </b> <span>{{gameId}}</span> <br/>
-        <b>Game Url : </b> <span>{{gameUrl}}</span> <br/>
-    </div>
-   </center>
+    <center>
+        <div class="game-info">
+            <b>Game status: </b> <span>{{ gameStatus}}</span> <br/>
+            <b>Game Id : </b> <span>{{gameId}}</span> <br/>
+            <b>Game Url : </b> <span>{{gameUrl}}</span> <br/>
+        </div>
+    </center>
     <br/>
     <br/>
 
     <h1 class="center game-over" ng-if="isGameOver">
-         GAME OVER !
+        GAME OVER !
     </h1>
 
     <h1 class="center player" ng-if="winner">
@@ -28,6 +29,8 @@
 
     <h1 class="center player" ng-if="!winner">
         Turn: <span ng-show="activePlayer && !winner"> {{activePlayer}}</span>
+        <span ng-show="!activePlayer && !winner">Start with one Player</span>
+
     </h1>
 
     <br/>

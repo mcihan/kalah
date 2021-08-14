@@ -42,6 +42,17 @@ class BoardTest {
     }
 
     @Test
+    void shouldAdvanceToNextPitWhenEndPit() {
+        Integer pitId = GameConstant.PIT_END_ID;
+        Integer expectedPitId = pitId % GameConstant.PIT_END_ID +1;
+        Board board = new Board();
+
+        Pit nextPit = board.advanceToNextPit(pitId);
+
+        assertEquals(expectedPitId, nextPit.getId());
+    }
+
+    @Test
     void shouldSetLatestPitWhenAdvanceToNextPit() {
         Integer pitId = 1;
         Board board = new Board();

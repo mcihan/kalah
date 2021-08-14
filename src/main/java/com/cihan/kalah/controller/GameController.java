@@ -37,9 +37,11 @@ public class GameController {
 
     @PutMapping("/{gameId}/pits/{pitId}")
     public ResponseEntity<MoveGameResponse> move(@PathVariable final String gameId, @PathVariable final Integer pitId) {
+        log.info("Moving Started !");
         RequestValidator.validateParameters(gameId, pitId);
         Game game = gameService.move(gameId, pitId);
         MoveGameResponse response = new MoveGameResponse(game, port);
+        log.info("status {} for pitId {}", response.getStatus(), pitId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

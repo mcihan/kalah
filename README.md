@@ -18,9 +18,9 @@ The default implementation of this app for 6 stone and 6 pits.
 <br/>  
 
 💡 **You can customize the application by changing default stone or pit count. So you can play many different implementation of KALAH**  
-```
-Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐒𝐓𝐎𝐍𝐄_𝐂𝐎𝐔𝐍𝐓 as a N for play N-stone Kalah.     
-Change 𝐃𝐄𝐅𝐀𝐔𝐋𝐓_𝐏𝐈𝐓_𝐂𝐎𝐔𝐍𝐓 as a N for play N-pits Kalah. 
+```js
+Change "DEFAULT_STONE_COUNT" as a N for play N-stone Kalah.     
+Change "DEFAULT_PIT_COUND" as a N for play N-pits Kalah. 
 ```
 
 ## About the game
@@ -72,7 +72,7 @@ http://localhost:8080/swagger-ui.html
 **Swagger Implementation :**  
 
 
-![image info](./screenshots/swagger.png)
+![image info](./doc/swagger.png)
 
  
 
@@ -116,7 +116,7 @@ curl --header "Content-Type: application/json" \
 |Metric| Cover persentence|
 |-|-|
 |Hotspots Reviewed | 100%|
-|Test Coverage | 96.7%|
+|Test Coverage | 97%|
  
 
  <br/>
@@ -125,12 +125,4 @@ curl --header "Content-Type: application/json" \
 
  <br/>
  
- Game:
-
-
-
-
- ----------  
- ㅤㅤㅤ
- ㅤㅤㅤ
- ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+  ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ

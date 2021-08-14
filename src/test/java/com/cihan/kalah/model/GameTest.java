@@ -104,11 +104,16 @@ class GameTest {
         int oppositePitStone = game.getBoard().getOppositePit(pitId).getStoneCount();
         int houseStone = game.getBoard().getHousePit(Player.A).getStoneCount();
         int sumOfStones = pitStone + oppositePitStone + houseStone;
+        int allStones = game.getBoard().getPits().values().stream().mapToInt(Pit::getStoneCount).sum();
 
         game.captureOppositePitStone(pitId);
 
         int houseStoneAfterCapture = game.getBoard().getHousePit(Player.A).getStoneCount();
         assertEquals(sumOfStones, houseStoneAfterCapture);
+
+        int allStonesAfterCaptured = game.getBoard().getPits().values().stream().mapToInt(Pit::getStoneCount).sum();
+        assertEquals(allStones, allStonesAfterCaptured);
+
     }
 
 }

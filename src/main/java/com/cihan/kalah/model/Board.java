@@ -37,8 +37,7 @@ public class Board {
     }
 
     public Pit advanceToNextPit(Integer pitId) {
-        int nextPitId = pitId <= GameConstant.PIT_END_ID ? pitId : pitId % GameConstant.PIT_END_ID;
-        latestPit = pits.get(nextPitId);
+        latestPit = pits.get(pitId);
         return latestPit;
     }
 

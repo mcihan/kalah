@@ -17,6 +17,7 @@ angular.module('KalahGameApplication', [])
         $scope.errorMessage = undefined;
         $scope.gameStatus = "START";
 
+
         gameController.setFields = function (moveResponse) {
             $scope.pitMap = moveResponse.status;
             $scope.pits = Object.entries($scope.pitMap).map(([id, stone]) => ({id, stone}));
@@ -25,6 +26,22 @@ angular.module('KalahGameApplication', [])
             $scope.pitsA = $scope.pits.filter(p => p.id < PIT_MEDIAN_ID);
             $scope.pitsB = $scope.pits.filter(p => p.id > PIT_MEDIAN_ID).filter(p => p.id < PIT_END_ID).reverse();
             $scope.houses = $scope.pits.filter(p => p.id % PIT_MEDIAN_ID === 0).reverse();
+/*
+            let  total = 0;
+
+            for(let i= 1 ; i<= 14; i++ ){
+                let value = $scope.pitMap[i];
+                total += parseInt(value);
+            }
+
+
+
+            if(total !=72){
+                $scope.BUG="BUG VAR !!!!!!";
+                console.log("BUGG");
+            }*/
+
+
         };
 
         gameController.setFields(initialMoveResponse);
@@ -42,11 +59,13 @@ angular.module('KalahGameApplication', [])
 
             $scope.errorMessage = "";
 
+            console.log("BeforSend: " + JSON.stringify($scope.pitMap))
             $http.put("/games/" + $scope.gameId + "/pits/" + pitId + "").then(function (response) {
                 gameController.setFields(response.data);
 
                 determineActivePlayer(pit);
                 determineWinner(response.data)
+                console.log("AfterSend: " + JSON.stringify($scope.pitMap))
 
             }).catch(function (response) {
                 console.log(response);

@@ -34,8 +34,6 @@ angular.module('KalahGameApplication', [])
                 total += parseInt(value);
             }
 
-
-
             if(total !=72){
                 $scope.BUG="BUG VAR !!!!!!";
                 console.log("BUGG");

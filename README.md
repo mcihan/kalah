@@ -1,3 +1,19 @@
+ - [Kalah Game](#kalah-game)
+  * [About the game](#about-the-game)
+  * [Installation](#installation)
+    + [Minimum Specification](#minimum-specification)
+    + [Build & Run](#build---run)
+  * [Technology Stack](#technology-stack)
+  * [API documentation](#api-documentation)
+    + [How to use API](#how-to-use-api)
+  * [Code Metrics](#code-metrics)
+- [UI Implementation](#ui-implementation)
+  * [Default 6-Stone Kalah (6 Stone - 6 Pit)](#default-6-stone-kalah--6-stone---6-pit-)
+  * [5-Stone Kalah (6 Stone - 6 Pit)](#5-stone-kalah--6-stone---6-pit-)
+  * [Custom NxN Kalah (4 Stone - 4 Pit)](#custom-nxn-kalah--4-stone---4-pit-)
+  * [Finished Game for (6-stone Kalah)](#finished-game-for--6-stone-kalah-)
+
+<br/>
 
 # Kalah Game
 
@@ -32,7 +48,7 @@ Change "DEFAULT_PIT_COUNT" as a N for play N-pits Kalah.
 
 <br/> 
 
-## **Installation**
+## Installation
    
 ### Minimum Specification
  
@@ -48,7 +64,7 @@ Change "DEFAULT_PIT_COUNT" as a N for play N-pits Kalah.
 
  
 
-## **Technology Stack**
+## Technology Stack
 
 |    | Name  |  ㅤVersion |
 |----------|-------------|------|
@@ -63,7 +79,7 @@ Change "DEFAULT_PIT_COUNT" as a N for play N-pits Kalah.
   
 
 
-## **API documentation**
+## API documentation
 
 You can access the Swagger API documentation using the link below.  
 http://localhost:8080/swagger-ui.html  
@@ -77,7 +93,7 @@ http://localhost:8080/swagger-ui.html
 
  
 
-### **How to use API**
+### How to use API
 
 1 - Create the game with the command:
 
@@ -99,6 +115,25 @@ curl --header "Content-Type: application/json" \
   
   
 <br/>
+
+## Code Metrics
+
+![image info](./doc/code-metrics.png)  
+
+<br/>
+
+|Metric| Cover persentence|
+|-|-|
+|Hotspots Reviewed | 100%|
+|Test Coverage | 97%|
+ 
+
+ <br/>
+
+![image info](./doc/code-metrics2.png)  
+
+ <br/>
+ 
 
 # UI Implementation  
 
@@ -139,23 +174,4 @@ You can play many different implementation of KALAH by changing **DEFAULT_STONE_
 
 ![image info](./doc/finish.png)  
 
-
-## Code Metrics
-
-![image info](./doc/code-metrics.png)  
-
-<br/>
-
-|Metric| Cover persentence|
-|-|-|
-|Hotspots Reviewed | 100%|
-|Test Coverage | 97%|
- 
-
- <br/>
-
-![image info](./doc/code-metrics2.png)  
-
- <br/>
- 
   ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ

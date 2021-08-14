@@ -1,5 +1,5 @@
-const DEFAULT_PIT_COUNT = 6;
-const DEFAULT_STONE_COUNT = 6;
+const DEFAULT_STONE_COUNT = 4;
+const DEFAULT_PIT_COUNT = 4;
 const PIT_START_ID = 1;
 const PIT_END_ID = DEFAULT_PIT_COUNT * 2 + 2;
 const PIT_MEDIAN_ID = PIT_END_ID / 2;
@@ -26,19 +26,6 @@ angular.module('KalahGameApplication', [])
             $scope.pitsA = $scope.pits.filter(p => p.id < PIT_MEDIAN_ID);
             $scope.pitsB = $scope.pits.filter(p => p.id > PIT_MEDIAN_ID).filter(p => p.id < PIT_END_ID).reverse();
             $scope.houses = $scope.pits.filter(p => p.id % PIT_MEDIAN_ID === 0).reverse();
-/*
-            let  total = 0;
-
-            for(let i= 1 ; i<= 14; i++ ){
-                let value = $scope.pitMap[i];
-                total += parseInt(value);
-            }
-
-            if(total !=72){
-                $scope.BUG="BUG VAR !!!!!!";
-                console.log("BUGG");
-            }*/
-
 
         };
 
@@ -60,7 +47,6 @@ angular.module('KalahGameApplication', [])
             console.log("BeforSend: " + JSON.stringify($scope.pitMap))
             $http.put("/games/" + $scope.gameId + "/pits/" + pitId + "").then(function (response) {
                 gameController.setFields(response.data);
-
                 determineActivePlayer(pit);
                 determineWinner(response.data)
                 console.log("AfterSend: " + JSON.stringify($scope.pitMap))

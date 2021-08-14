@@ -99,10 +99,28 @@ curl --header "Content-Type: application/json" \
   
 <br/>
 
-# UI Implementation
+# UI Implementation  
+
+Please browse http://localhost:8080 to play kalah via UI Implementation.  
+
+<br/>
+
+## Default 6-Stone Kalah (6 Stone - 6 Pit)
  
 ![image info](./doc/kalah.gif)  
 
+
+## 5-Stone Kalah (6 Stone - 6 Pit) 
+![image info](./doc/5-stone.png)  
+
+<br/>
+
+## Custom NxN Kalah (4 Stone - 4 Pit) 
+![image info](./doc/4-4.png)  
+
+
+
+ 
 
   
 <br/>

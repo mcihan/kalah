@@ -1,10 +1,10 @@
 package com.cihan.kalah.service;
 
 import com.cihan.kalah.generator.MockDataGenerator;
-import com.cihan.kalah.model.Board;
-import com.cihan.kalah.model.Game;
-import com.cihan.kalah.model.GameConstant;
-import com.cihan.kalah.model.Pit;
+import com.cihan.kalah.domain.Board;
+import com.cihan.kalah.domain.Game;
+import com.cihan.kalah.domain.GameConstant;
+import com.cihan.kalah.domain.Pit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

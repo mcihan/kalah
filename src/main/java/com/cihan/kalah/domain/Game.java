@@ -1,4 +1,4 @@
-package com.cihan.kalah.model;
+package com.cihan.kalah.domain;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +28,8 @@ public class Game {
         this.activePlayer = this.board.getPitById(pitId).getPlayer();
     }
 
-    public Pit moveOn(Integer integer) {
-        return this.board.advanceToNextPit(integer);
+    public Pit moveOn(Integer pitId) {
+        return this.board.advanceToNextPit(pitId);
     }
 
     public void determineWinner() {

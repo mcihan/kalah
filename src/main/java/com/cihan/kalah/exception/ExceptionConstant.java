@@ -1,6 +1,6 @@
 package com.cihan.kalah.exception;
 
-import com.cihan.kalah.model.GameConstant;
+import com.cihan.kalah.domain.GameConstant;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

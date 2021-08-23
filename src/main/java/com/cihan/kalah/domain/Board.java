@@ -1,4 +1,4 @@
-package com.cihan.kalah.model;
+package com.cihan.kalah.domain;
 
 import com.cihan.kalah.exception.ExceptionConstant;
 import com.cihan.kalah.exception.GameException;
@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 @Getter
 public class Board {
-    private ConcurrentMap<Integer, Pit> pits;
+    private final ConcurrentMap<Integer, Pit> pits;
     private Pit latestPit;
 
     Board() {
@@ -37,9 +37,8 @@ public class Board {
     }
 
     public Pit advanceToNextPit(Integer pitId) {
-        pitId = getNextPitId(pitId);
-        latestPit = pits.get(pitId);
-        return latestPit;
+        Integer nextPitId = getNextPitId(pitId);
+        return pits.get(nextPitId);
     }
 
     private Integer getNextPitId(Integer pitId) {

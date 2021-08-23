@@ -2,7 +2,7 @@ package com.cihan.kalah.controller;
 
 import com.cihan.kalah.exception.ExceptionConstant;
 import com.cihan.kalah.exception.GameException;
-import com.cihan.kalah.model.GameConstant;
+import com.cihan.kalah.domain.GameConstant;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

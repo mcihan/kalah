@@ -2,10 +2,10 @@ package com.cihan.kalah.service;
 
 import com.cihan.kalah.exception.ExceptionConstant;
 import com.cihan.kalah.exception.GameException;
-import com.cihan.kalah.model.Game;
-import com.cihan.kalah.model.GameStatus;
-import com.cihan.kalah.model.Pit;
-import com.cihan.kalah.model.Player;
+import com.cihan.kalah.domain.Game;
+import com.cihan.kalah.domain.GameStatus;
+import com.cihan.kalah.domain.Pit;
+import com.cihan.kalah.domain.Player;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

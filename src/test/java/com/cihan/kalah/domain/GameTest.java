@@ -1,4 +1,4 @@
-package com.cihan.kalah.model;
+package com.cihan.kalah.domain;
 
 import com.cihan.kalah.generator.MockDataGenerator;
 import org.junit.jupiter.api.Test;

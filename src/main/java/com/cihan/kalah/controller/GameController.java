@@ -3,7 +3,7 @@ package com.cihan.kalah.controller;
 
 import com.cihan.kalah.controller.dto.MoveGameResponse;
 import com.cihan.kalah.controller.dto.StartGameResponse;
-import com.cihan.kalah.model.Game;
+import com.cihan.kalah.domain.Game;
 import com.cihan.kalah.service.GameService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

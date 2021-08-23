@@ -1,7 +1,7 @@
 package com.cihan.kalah.service;
 
 import com.cihan.kalah.generator.MockDataGenerator;
-import com.cihan.kalah.model.Game;
+import com.cihan.kalah.domain.Game;
 import com.cihan.kalah.repository.GameRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -2,7 +2,7 @@ package com.cihan.kalah.controller;
 
 import com.cihan.kalah.exception.ExceptionConstant;
 import com.cihan.kalah.exception.GameException;
-import com.cihan.kalah.model.GameConstant;
+import com.cihan.kalah.domain.GameConstant;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

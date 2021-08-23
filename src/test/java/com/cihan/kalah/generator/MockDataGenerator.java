@@ -1,7 +1,7 @@
 package com.cihan.kalah.generator;
 
-import com.cihan.kalah.model.Game;
-import com.cihan.kalah.model.Pit;
+import com.cihan.kalah.domain.Game;
+import com.cihan.kalah.domain.Pit;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

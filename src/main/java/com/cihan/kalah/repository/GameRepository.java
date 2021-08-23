@@ -1,6 +1,6 @@
 package com.cihan.kalah.repository;
 
-import com.cihan.kalah.model.Game;
+import com.cihan.kalah.domain.Game;
 
 public interface GameRepository {
 

@@ -1,6 +1,6 @@
 package com.cihan.kalah.util;
 
-import com.cihan.kalah.model.Game;
+import com.cihan.kalah.domain.Game;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

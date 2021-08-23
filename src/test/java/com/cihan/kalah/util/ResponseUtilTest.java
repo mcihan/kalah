@@ -1,8 +1,8 @@
 package com.cihan.kalah.util;
 
 import com.cihan.kalah.generator.MockDataGenerator;
-import com.cihan.kalah.model.Game;
-import com.cihan.kalah.model.Pit;
+import com.cihan.kalah.domain.Game;
+import com.cihan.kalah.domain.Pit;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

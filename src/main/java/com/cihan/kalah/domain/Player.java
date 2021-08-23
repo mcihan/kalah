@@ -1,4 +1,4 @@
-package com.cihan.kalah.model;
+package com.cihan.kalah.domain;
 
 public enum Player {
     A,

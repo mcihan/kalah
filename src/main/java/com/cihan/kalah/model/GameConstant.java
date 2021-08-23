@@ -1,12 +1,13 @@
 package com.cihan.kalah.model;
 
+import com.cihan.kalah.config.GameProperties;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GameConstant {
-    static final int DEFAULT_STONE_COUNT = 6;
-    private static final int DEFAULT_PIT_COUNT = 6;
+    static final int DEFAULT_STONE_COUNT = GameProperties.DEFAULT_STONE_COUNT;
+    private static final int DEFAULT_PIT_COUNT = GameProperties.DEFAULT_PIT_COUNT;
 
     public static final int PIT_START_ID = 1;
     public static final int PIT_END_ID = DEFAULT_PIT_COUNT * 2 + 2;

@@ -1,11 +1,12 @@
-const DEFAULT_STONE_COUNT = 6;
-const DEFAULT_PIT_COUNT = 6;
+let DEFAULT_STONE_COUNT = 6;
+let DEFAULT_PIT_COUNT = 6;
 const PIT_START_ID = 1;
 const PIT_END_ID = DEFAULT_PIT_COUNT * 2 + 2;
 const PIT_MEDIAN_ID = PIT_END_ID / 2;
 const HOUSE_A_PIT_ID = PIT_MEDIAN_ID;
 const HOUSE_B_PIT_ID = PIT_END_ID;
 const TOTAL_STONE_COUNT = DEFAULT_STONE_COUNT * (PIT_MEDIAN_ID - 1) * 2;
+
 
 angular.module('KalahGameApplication', [])
     .controller('GameController', function ($scope, $http) {
@@ -35,6 +36,8 @@ angular.module('KalahGameApplication', [])
             const startGameResponse = response.data;
             $scope.gameId = startGameResponse.id;
             $scope.gameUrl = startGameResponse.uri;
+            DEFAULT_STONE_COUNT = startGameResponse.defaultStone;
+            DEFAULT_PIT_COUNT = startGameResponse.defaultPit;
         });
 
 

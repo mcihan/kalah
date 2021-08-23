@@ -1,13 +1,17 @@
 <!doctype html>
-<html ng-app="KalahGameApplication">
+<html ng-app="KalahGameApplication"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="main.css">
     <script src="library/angular.min.js"></script>
     <script src="app.js"></script>
 
 </head>
+
+
 <body>
 <div ng-controller="GameController as gameController">
+
+    ---><td th:text="${@environment.getProperty('kalah.default-pit-count')}"></td>
 
     <center>
         <div class="game-info">

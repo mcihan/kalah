@@ -1,6 +1,7 @@
 package com.cihan.kalah.controller;
 
 
+import com.cihan.kalah.config.GameProperties;
 import com.cihan.kalah.controller.dto.MoveGameResponse;
 import com.cihan.kalah.controller.dto.StartGameResponse;
 import com.cihan.kalah.model.Game;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +45,14 @@ public class GameController {
         MoveGameResponse response = new MoveGameResponse(game, port);
         log.info("status {} for pitId {}", response.getStatus(), pitId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/")
+    public String main(Model model) {
+        model.addAttribute("pitCount", GameProperties.DEFAULT_PIT_COUNT);
+        model.addAttribute("stoneCount", GameProperties.DEFAULT_STONE_COUNT);
+
+        return "index"; //view
     }
 
 }

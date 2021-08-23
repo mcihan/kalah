@@ -1,5 +1,6 @@
 package com.cihan.kalah.controller.dto;
 
+import com.cihan.kalah.config.GameProperties;
 import com.cihan.kalah.generator.MockDataGenerator;
 import com.cihan.kalah.model.Game;
 import com.cihan.kalah.util.ResponseUtil;

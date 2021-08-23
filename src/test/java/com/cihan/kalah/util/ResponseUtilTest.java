@@ -1,8 +1,8 @@
 package com.cihan.kalah.util;
 
-import com.cihan.kalah.generator.MockDataGenerator;
 import com.cihan.kalah.domain.Game;
 import com.cihan.kalah.domain.Pit;
+import com.cihan.kalah.generator.MockDataGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -23,7 +23,7 @@ class ResponseUtilTest {
     @Test
     void shouldGenerateGameUrl() {
         Game game = MockDataGenerator.generateGame();
-        String expectedGameUrl = "http://localhost:8080/games/"+game.getId();
+        String expectedGameUrl = "http://localhost:8080/games/" + game.getId();
         String gameUrl = ResponseUtil.generateGameUrl(game, 8080);
         assertEquals(expectedGameUrl, gameUrl);
     }

@@ -1,9 +1,9 @@
 package com.cihan.kalah.repository;
 
+import com.cihan.kalah.domain.Game;
 import com.cihan.kalah.exception.ExceptionConstant;
 import com.cihan.kalah.exception.GameException;
 import com.cihan.kalah.generator.MockDataGenerator;
-import com.cihan.kalah.domain.Game;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

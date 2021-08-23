@@ -1,8 +1,10 @@
 package com.cihan.kalah.service;
 
-import com.cihan.kalah.generator.MockDataGenerator;
 import com.cihan.kalah.domain.Game;
+import com.cihan.kalah.domain.Pit;
+import com.cihan.kalah.generator.MockDataGenerator;
 import com.cihan.kalah.repository.GameRepositoryImpl;
+import com.cihan.kalah.service.engine.GameStateExecutor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +26,7 @@ class GameServiceTest {
     private GameRepositoryImpl gameRepository;
 
     @Mock
-    private GameEngine gameEngine;
+    private GameStateExecutor gameStateExecutor;
 
     @Test
     void create() {
@@ -41,9 +43,10 @@ class GameServiceTest {
         Game game = MockDataGenerator.generateGame();
         String gameId = game.getId();
         Integer pitId = 1;
+        Pit pit = game.getBoard().getPitById(pitId);
 
         when(gameRepository.findById(gameId)).thenReturn(game);
-        doNothing().when(gameEngine).executeGameFlow(game, pitId);
+        doNothing().when(gameStateExecutor).executeFlow(game, pit);
         when(gameRepository.save(Mockito.any())).thenReturn(game);
 
         Game movedGame = gameService.move(gameId, pitId);

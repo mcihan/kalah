@@ -13,7 +13,6 @@ import java.util.stream.IntStream;
 @Getter
 public class Board {
     private final ConcurrentMap<Integer, Pit> pits;
-    private Pit latestPit;
 
     Board() {
         this.pits = initPits();

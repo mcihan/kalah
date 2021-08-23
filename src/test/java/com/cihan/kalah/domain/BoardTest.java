@@ -58,9 +58,9 @@ class BoardTest {
         Integer expectedPitId = pitId + 1;
         Board board = new Board();
 
-        board.advanceToNextPit(pitId);
+        Pit pit = board.advanceToNextPit(pitId);
 
-        assertEquals(expectedPitId, board.getLatestPit().getId());
+        assertEquals(expectedPitId, pit.getId());
     }
 
     @Test

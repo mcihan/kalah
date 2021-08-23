@@ -1,16 +1,16 @@
 # Contents
 
 - [Kalah Game](#kalah-game)
-  - [About the game](#about-the-game)
-  - [Installation](#installation)
-  - [Technology Stack](#technology-stack)
-  - [API documentation](#api-documentation)
-  - [Code Metrics](#code-metrics)
+    - [About the game](#about-the-game)
+    - [Installation](#installation)
+    - [Technology Stack](#technology-stack)
+    - [API documentation](#api-documentation)
+    - [Code Metrics](#code-metrics)
 - [UI Implementation](#ui-implementation)
-  - [Default 6-Stone Kalah (6 Stone - 6 Pit)](#default-6-stone-kalah-6-stone---6-pit)
-  - [5-Stone Kalah (6 Stone - 6 Pit)](#5-stone-kalah-6-stone---6-pit)
-  - [Custom NxN Kalah (4 Stone - 4 Pit)](#custom-nxn-kalah-4-stone---4-pit)
-  - [Finished Game for (6-stone Kalah)](#finished-game-for-6-stone-kalah)
+    - [Default 6-Stone Kalah (6 Stone - 6 Pit)](#default-6-stone-kalah-6-stone---6-pit)
+    - [5-Stone Kalah (6 Stone - 6 Pit)](#5-stone-kalah-6-stone---6-pit)
+    - [Custom NxN Kalah (4 Stone - 4 Pit)](#custom-nxn-kalah-4-stone---4-pit)
+    - [Finished Game for (6-stone Kalah)](#finished-game-for-6-stone-kalah)
 
 <br/>
 
@@ -20,48 +20,46 @@
 
 **@author:** *M. Cihan DOGAN*
 
-
 This is a SpringBoot + REST API application that runs the game of 6-stone Kalah.   
-For the general rules of the game please refer to Wikipedia: https://en.wikipedia.org/wiki/Kalah.  
+For the general rules of the game please refer to Wikipedia: https://en.wikipedia.org/wiki/Kalah.
 
 <br/>
 
-The default implementation of this app for 6 stone and 6 pits.  
+The default implementation of this app for 6 stone and 6 pits.
 
 **BUT!**
 ㅤㅤ
-<br/>  
+<br/>
 
-💡 **You can customize the application by changing default stone or pit count. So you can play many different implementation of KALAH**  
+💡 **You can customize the application by changing default stone or pit count. So you can play many different implementation of KALAH**
+
 ```js
 Change "DEFAULT_STONE_COUNT" as a N for play N-stone Kalah.     
 Change "DEFAULT_PIT_COUNT" as a N for play N-pits Kalah. 
 ```
 
 ## About the game
-* Each of the two players has six pits in front of him/her. 
+
+* Each of the two players has six pits in front of him/her.
 * To the right of the six pits, each player has a larger pit, his Kalah or house.
 * At the start of the game, six stones are put In each pit.
-* The player who begins picks up all the stones in any of their own pits, and distribute the stones on to the right, one in each of the following pits, including his own Kalah. 
+* The player who begins picks up all the stones in any of their own pits, and distribute the stones on to the right, one in each of the following pits, including his own Kalah.
 * No stones are put in the opponent(s) Kalah. If the players last stone lands in his own Kalah, he gets another turn. This can be repeated any number of times before it's the other player's turn.
 
 <br/> 
 
 ## Installation
-   
-### Minimum Specification
- 
- - **Java 11** or latest 
 
+### Minimum Specification
+
+- **Java 11** or latest
 
 ### Build & Run
 
 |    | Linux & OSX  |  Windows |
 |----------|-------------|------|
 | **Build** | *./mvnw clean install* | *./mvnw.bat clean install*  |
-| **Run**| *./mvnw  spring-boot:run*| *./mvnw.bat spring-boot:run*  | 
-
- 
+| **Run**| *./mvnw spring-boot:run*| *./mvnw.bat spring-boot:run*  | 
 
 ## Technology Stack
 
@@ -73,24 +71,17 @@ Change "DEFAULT_PIT_COUNT" as a N for play N-pits Kalah.
 |Coverage| ㅤ**JaCoCo** | ㅤ0.8.6 |
 |Utility | ㅤ**Lombok**   <br/> ㅤ**Apache Commons Lang3** | ㅤ1.18.20  <br/> ㅤ3.11 |
 |UI | ㅤ**Angular**  | ㅤ1.8.2|
- 
-
-  
-
 
 ## API documentation
 
 You can access the Swagger API documentation using the link below.  
-http://localhost:8080/swagger-ui.html  
+http://localhost:8080/swagger-ui.html
 
 <br/>
 
-**Swagger Implementation :**  
-
+**Swagger Implementation :**
 
 ![image info](./doc/swagger.png)
-
- 
 
 ### How to use API
 
@@ -111,66 +102,58 @@ curl --header "Content-Type: application/json" \
     --request PUT \ 
     http://localhost:8080/games/{gameId}/pits/{pitId}
 ```
-  
-  
+
 <br/>
 
 ## Code Metrics
 
-![image info](./doc/code-metrics.png)  
+![image info](./doc/code-metrics.png)
 
 <br/>
 
-|Metric| Cover persentence|
-|-|-|
-|Hotspots Reviewed | 100%|
-|Test Coverage | 97%|
- 
+|Metric| Cover persentence| |-|-| |Hotspots Reviewed | 100%| |Test Coverage | 97%|
+
 
  <br/>
 
-![image info](./doc/code-metrics2.png)  
+![image info](./doc/code-metrics2.png)
 
  <br/>
- 
 
-# UI Implementation  
+# UI Implementation
 
-Please browse http://localhost:8080 to play kalah via UI Implementation.  
- 
+Please browse http://localhost:8080 to play kalah via UI Implementation.
+
 This UI implementation uses the REST API to integrate into the kalah application;
 
-- When you open http://localhost:8080, game start automatically by calling http://localhost:8080/games endpoint  
+- When you open http://localhost:8080, game start automatically by calling http://localhost:8080/games endpoint
 
 - When you move stone it call   http://localhost:8080/games/{gameId}/pits/{pitId} and update pits stones.
-
 
 <br/>
 
 ## Default 6-Stone Kalah (6 Stone - 6 Pit)
- 
-![image info](./doc/kalah.gif)  
 
+![image info](./doc/kalah.gif)
 
-## 5-Stone Kalah (6 Stone - 6 Pit) 
-![image info](./doc/5-stone.png)  
+## 5-Stone Kalah (6 Stone - 6 Pit)
+
+![image info](./doc/5-stone.png)
 
 <br/>
 
-## Custom NxN Kalah (4 Stone - 4 Pit)   
+## Custom NxN Kalah (4 Stone - 4 Pit)
+
+You can play many different implementation of KALAH by changing **DEFAULT_STONE_COUNT** and  **DEFAULT_PIT_COUNT**.
+
+![image info](./doc/4-4.png)
 
 
-You can play many different implementation of KALAH by changing **DEFAULT_STONE_COUNT** and  **DEFAULT_PIT_COUNT**.  
 
-
-![image info](./doc/4-4.png)  
-
-
-  
 <br/>
 
 ## Finished Game for (6-stone Kalah)
 
-![image info](./doc/finish.png)  
+![image info](./doc/finish.png)
 
-  ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
